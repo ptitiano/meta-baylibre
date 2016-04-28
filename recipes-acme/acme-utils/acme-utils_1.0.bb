@@ -23,6 +23,8 @@ do_compile() {
 
 do_install() {
 	     install -d ${D}${bindir}
-	     install -m 0755 api/dut-* ${D}${bindir}
+	     install -m 0755 api/dut-hard-reset ${D}${bindir}
+	     install -m 0755 api/dut-switch-*   ${D}${bindir}
+	     install -m 0755 api/dut-dump-probe ${D}${bindir}
 }
 

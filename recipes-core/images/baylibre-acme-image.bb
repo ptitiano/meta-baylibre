@@ -4,7 +4,7 @@ INC_PR = "r0"
 
 IMAGE_FEATURES += "dev-pkgs"
 
-DEPENDS += "linux-yocto"
+DEPENDS += "linux-yocto-mainline"
 
 FSTYPE_VIRT ?= "ext3"
 
