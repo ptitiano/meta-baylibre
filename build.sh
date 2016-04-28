@@ -158,9 +158,9 @@ enable_layer "meta-systemd" "$OE/meta-systemd"
 
 enable_layer "meta-ti" "$TOPLEVEL/meta-ti"
 
-enable_layer "meta-beagleboard" "$TOPLEVEL/meta-beaglboard" "meta-ti"
+#enable_layer "meta-beagleboard" "$TOPLEVEL/meta-beagleboard" "meta-ti"
 
-enable_layer "meta-baylibre" "$TOPLEVEL/meta-baylibre" "meta-beagleboard"
+enable_layer "meta-baylibre" "$TOPLEVEL/meta-baylibre"
 
 # Enable the meta-oe layer
 enable_layer "meta-oe" "$OE/meta-oe"

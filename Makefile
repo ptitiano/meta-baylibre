@@ -15,7 +15,7 @@ COMMON_ARGS := ${BUILD_SCRIPT} \
 
 COMMON_BBB := \
                 ${COMMON_ARGS} \
-                -m beaglenone
+                -m beaglebone
 
 COMMON_BIN := \
                 ${COMMON_BBB} \
