@@ -3,62 +3,41 @@ baylibre layer.
 
 Please see the corresponding sections below for details.
 
+Fetching and preaparing
+=======================
 
-Dependencies
-============
+Get the repo with:
 
-This layer depends on:
+ * repo init -u https://github.com/BayLibre/manifests.git -m acme/poky-wip.xml
+ * repo sync
 
-  URI: git://git.openembedded.org/bitbake
-  branch: master
+Create a link for the makefile:
 
-  URI: git://git.openembedded.org/openembedded-core
-  layers: meta
-  branch: master
+ * ln -s meta-baylibre/Makefile Makefile
 
-  URI: git://git.yoctoproject.org/xxxx
-  layers: xxxx
-  branch: master
+build with:
 
-
-Patches
-=======
-
-Please submit any patches against the baylibre layer to the
-xxxx mailing list (xxxx@zzzz.org) and cc: the maintainer:
-
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
+ $> make
 
 
-Table of Contents
-=================
+Build Configuration
+===================
 
-  I. Adding the baylibre layer to your build
- II. Misc
-
-
-I. Adding the baylibre layer to your build
-=================================================
-
---- replace with specific instructions for the baylibre layer ---
-
-In order to use this layer, you need to make the build system aware of
-it.
-
-Assuming the baylibre layer exists at the top-level of your
-yocto build tree, you can add it to the build system by adding the
-location of the baylibre layer to bblayers.conf, along with any
-other layers needed. e.g.:
-
-  BBLAYERS ?= " \
-    /path/to/yocto/meta \
-    /path/to/yocto/meta-yocto \
-    /path/to/yocto/meta-yocto-bsp \
-    /path/to/yocto/meta-baylibre \
-    "
-
-
-II. Misc
-========
-
---- replace with specific information about the baylibre layer ---
+BB_VERSION        = "1.30.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "acme-baylibre"
+DISTRO_VERSION    = "2.1"
+TUNE_FEATURES     = "arm armv7a vfp  neon        callconvention-hard        cortexa8"
+TARGET_FPU        = "hard"
+meta              
+meta-poky         
+meta-yocto-bsp    = "HEAD:a9b503b268e94d311f892fa00c5d6bd9ffdb228e"
+meta-python       
+meta-networking   
+meta-oe           = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
+meta-baylibre     = "master:e05b983ac24585ddbf3982c56d36af8dce2ac579"
+meta-ti           = "HEAD:6dea1b68af73cc1c6bcf4c3f780ed6fcce770adb"
+meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
