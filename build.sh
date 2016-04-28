@@ -211,18 +211,11 @@ then
     done
 fi
 
-grep -E "PREFERRED_PROVIDER_virtual\/kernel" $BD/conf/local.conf > /dev/null
-if [ $? != 0 ]; then
-    echo 'PREFERRED_PROVIDER_virtual/kernel = "linux-quic"' >> $BD/conf/local.conf
-else
-    sed -e 's:^\(PREFERRED_PROVIDER_virtual\/kernel\).*:\1 = \"linux-quic\":' -i $BD/conf/local.conf
-fi
-
 # Initramfs
-if test $MACH = "beaglebone"; then
-    set_option 'INITRAMFS_IMAGE_BUNDLE' '1'
-    set_option 'INITRAMFS_IMAGE' "acme-image-initramfs"
-fi
+#if test $MACH = "beaglebone"; then
+#    set_option 'INITRAMFS_IMAGE_BUNDLE' '1'
+#    set_option 'INITRAMFS_IMAGE' "acme-image-initramfs"
+#fi
 
 cd $BD
 
@@ -240,7 +233,8 @@ if [ $DEBUG = true ]; then
     if test $MACH = "acme-virt-arm" || test $MACH = "acme-virt-x86"; then
         bitbake acme-virt-image-dev
     else
-        bitbake acme-image-dev
+#        bitbake acme-image-dev
+        bitbake core-image-minimal
     fi
 else
     echo "minimal rootfs (for $MACH)."
@@ -249,7 +243,7 @@ else
         echo "No minimal image for $MACH."
         exit 1
     else
-        bitbake acme-image-minimal
+        bitbake core-image-minimal
     fi
 fi
 
