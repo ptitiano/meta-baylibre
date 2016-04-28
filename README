@@ -3,8 +3,8 @@ baylibre layer.
 
 Please see the corresponding sections below for details.
 
-Fetching and preaparing
-=======================
+Fetching and preparing
+======================
 
 Get the repo with:
 
@@ -17,7 +17,12 @@ Create a link for the makefile:
 
 build with:
 
- $> make
+ * $> make
+
+Build image
+===========
+
+baylibre-acme-image
 
 
 Build Configuration
