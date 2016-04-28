@@ -243,7 +243,7 @@ else
         echo "No minimal image for $MACH."
         exit 1
     else
-        bitbake core-image-minimal
+        bitbake baylibre-acme-image
     fi
 fi
 
