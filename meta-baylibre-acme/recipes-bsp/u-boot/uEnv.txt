@@ -1,4 +1,5 @@
 
+usb start
 hostname=baylibre-acme
 device=eth0
 autoconf=on
@@ -12,10 +13,10 @@ fdt_high=0xffffffff
 
 mmcroot=/dev/mmcblk0p2
 
-loadximage=load mmc 0:1 ${loadaddr} /boot/zImage
-loadxfdt=load mmc 0:1 ${fdtaddr} /boot/dtbs/${fdtfile}
-loaduEnvtxt=load mmc 0:1 ${loadaddr} /boot/uEnv.txt ; env import -t ${loadaddr} ${filesize};
-loadall=run loaduEnvtxt; run loadximage; run loadxfdt;
+loadximage=load mmc 0:1 ${loadaddr} zImage
+loadxfdt=load mmc 0:1 ${fdtaddr} ${fdtfile}
+
+loadall=run loadximage; run loadxfdt;
 
 mmcargs=setenv bootargs console=tty0 ip=dhcp console=${console} ${optargs} ${cape_disable} ${cape_enable} root=${mmcroot} rootfstype=${mmcrootfstype} ${cmdline}
 
