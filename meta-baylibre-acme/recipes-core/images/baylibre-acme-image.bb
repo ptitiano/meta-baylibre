@@ -14,8 +14,4 @@ IMAGE_INSTALL += "util-linux-blkid"
 IMAGE_INSTALL += "util-linux-mount"
 IMAGE_INSTALL += "acme-utils"
 
-#do_prepare_sdcard() {
-#    echo "Staging: TODO PREPARE SDCARD"
-#}
-#
-#addtask prepare_sdcard after do_rootfs before do_build
+IMAGE_BOOT_FILES += "zImage am335x-boneblack.dtb uEnv.txt"

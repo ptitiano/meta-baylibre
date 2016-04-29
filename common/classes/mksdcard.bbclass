@@ -5,6 +5,6 @@ DEPENDS += " \
         mtd-utils-native"
 
 do_wic() {
-#    wic create sdimage-bootpart -s -e ${IMAGE_NAME} 
+    wic create sdimage-bootpart -s -e ${IMAGE_NAME} 
 }
 

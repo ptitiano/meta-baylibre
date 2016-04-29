@@ -1,4 +1,4 @@
-# <blink> WIP </blink> BayLibre meta layer for Poky #
+# BayLibre meta layer for Poky (WIP) #
 
 This README file contains information on the contents of the
 baylibre layer.
@@ -37,7 +37,7 @@ chip in use.
  * DTB file link:    zImage-am335x-boneblack.dtb
  * kernel file link: zImage
 
-## Sdcard creation ##
+## SDcard creation ##
 
 Simply call wic with: 
 
@@ -48,7 +48,7 @@ Simply call wic with:
 then:
 
 ```
-    sudo dd if=/var/tmp/wic/baylibre-acme-image....img of=/dev/sdc bs=1M count=2048
+    sudo dd if=/var/tmp/wic/build/sdimage-bootpart-...-mmcblk.direct of=/dev/sdc bs=1M count=2048
 ```
 
 ## Build Configuration ##
