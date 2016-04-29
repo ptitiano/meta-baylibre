@@ -6,6 +6,6 @@ SRC_URI += "file://uEnv.txt"
 UBOOT_ENV = "uEnv"
 
 do_deploy_append() {
-    cp ${DEPLOYDIR}/zImage-am335x-boneblack.dtb am335x-boneblack.dtb
+    cp ${DEPLOY_DIR_IMAGE}/zImage-am335x-boneblack.dtb am335x-boneblack.dtb
 }
 
