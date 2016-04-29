@@ -5,6 +5,12 @@ baylibre layer.
 
 Please see the corresponding sections below for details.
 
+## Layers and sub-layers ##
+
+ * __meta_baylibre__      is the layer for common scripts/classes/ custom recipes.
+ * __meta-baylibre-acme__ is the layer for the current beaglebone-based acme board.
+ * __meta-baylibre-virt__ is the layer to experiment with qemuarm.
+
 ## Fetching and preparing ##
 
 Get the repo with:

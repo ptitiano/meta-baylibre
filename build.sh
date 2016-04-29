@@ -158,9 +158,13 @@ enable_layer "meta-systemd" "$OE/meta-systemd"
 
 enable_layer "meta-ti" "$TOPLEVEL/meta-ti"
 
-#enable_layer "meta-beagleboard" "$TOPLEVEL/meta-beagleboard" "meta-ti"
-
 enable_layer "meta-baylibre" "$TOPLEVEL/meta-baylibre"
+
+if test $MACH = "acme-virt-arm" || test $MACH = "acme-virt-x86"; then
+	enable_layer "meta-baylibre-virt" "$TOPLEVEL/meta-baylibre/meta-baylibre-virt"
+else
+	enable_layer "meta-baylibre-acme" "$TOPLEVEL/meta-baylibre/meta-baylibre-acme"
+fi
 
 # Enable the meta-oe layer
 enable_layer "meta-oe" "$OE/meta-oe"
@@ -170,6 +174,8 @@ enable_layer "meta-networking" "$OE/meta-networking"
 
 # Enable the meta-python layer
 enable_layer "meta-python" "$OE/meta-python"
+
+
 
 ## Conf: local.conf
 
