@@ -20,8 +20,6 @@ COMMON_BBB := \
 COMMON_BIN := \
                 ${COMMON_BBB} \
                 -b build_bin \
-                -q
-
 
 all: image_bin
 

@@ -114,12 +114,6 @@ do
     c)  CMD_LINE=true
         echo "Enable command line mode"
         ;;
-    q)  ENABLE_PROPRIETARY=true
-        echo "Enable Qualcomm Proprietary bin"
-        ;;
-    s)  ENABLE_PROPRIETARY_SRC=true
-        echo "Enable Qualcomm Proprietary source - overrides binary option"
-        ;;
     w)
         WK=$(readlink -f $OPTARG)
         ;;

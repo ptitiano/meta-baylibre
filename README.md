@@ -1,4 +1,4 @@
-# BayLibre meta layer for Poky #
+# <blink> WIP </blink> BayLibre meta layer for Poky #
 
 This README file contains information on the contents of the
 baylibre layer.
@@ -32,22 +32,29 @@ The distro builds a custom kernel pulled from mainline, in
 order to have the latest drivers for the power monitoring
 chip in use.
 
-### image name ###
+ * image name:       baylibre-acme-image
+ * kernel recipe:    linux-yocto-mainline
+ * DTB file link:    zImage-am335x-boneblack.dtb
+ * kernel file link: zImage
 
-<p align="center">
-baylibre-acme-image
-</p>
+## Sdcard creation ##
 
-### kernel recipe ###
+Simply call wic with: 
 
-<p align="center">
-linux-yocto-mainline
-</p>
+```
+    wic create sdimage-bootpart -e baylibre-acme-image
+```
+
+then:
+
+```
+    sudo dd if=/var/tmp/wic/baylibre-acme-image....img of=/dev/sdc bs=1M count=2048
+```
 
 ## Build Configuration ##
 
-
 ```
+Build Configuration:
 BB_VERSION        = "1.30.0"
 BUILD_SYS         = "x86_64-linux"
 NATIVELSBSTRING   = "universal"
@@ -63,7 +70,8 @@ meta-yocto-bsp    = "HEAD:a9b503b268e94d311f892fa00c5d6bd9ffdb228e"
 meta-python       
 meta-networking   
 meta-oe           = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
-meta-baylibre     = "master:e05b983ac24585ddbf3982c56d36af8dce2ac579"
+meta-baylibre-acme 
+meta-baylibre     = "master:a9b30448567cfc2d4fcbd706dae6bf364e6feebc"
 meta-ti           = "HEAD:6dea1b68af73cc1c6bcf4c3f780ed6fcce770adb"
 meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
 ```
