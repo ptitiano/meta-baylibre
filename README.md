@@ -1,33 +1,47 @@
+# BayLibre meta layer for Poky #
+
 This README file contains information on the contents of the
 baylibre layer.
 
 Please see the corresponding sections below for details.
 
-Fetching and preparing
-======================
+## Fetching and preparing ##
 
 Get the repo with:
 
- * repo init -u https://github.com/BayLibre/manifests.git -m acme/poky-wip.xml
- * repo sync
+ * ACME $> repo init -u https://github.com/BayLibre/manifests.git -m acme/poky-wip.xml
+ * ACME $> repo sync
 
 Create a link for the makefile:
 
- * ln -s meta-baylibre/Makefile Makefile
+ * ACME $> ln -s meta-baylibre/Makefile Makefile
 
 build with:
 
- * $> make
+ * ACME $> make
 
-Build image
-===========
+## Built kernel and images ##
 
+The distro builds a custom kernel pulled from mainline, in
+order to have the latest drivers for the power monitoring
+chip in use.
+
+### image name ###
+
+<p align="center">
 baylibre-acme-image
+</p>
+
+### kernel recipe ###
+
+<p align="center">
+linux-yocto-mainline
+</p>
+
+## Build Configuration ##
 
 
-Build Configuration
-===================
-
+```
 BB_VERSION        = "1.30.0"
 BUILD_SYS         = "x86_64-linux"
 NATIVELSBSTRING   = "universal"
@@ -46,3 +60,4 @@ meta-oe           = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
 meta-baylibre     = "master:e05b983ac24585ddbf3982c56d36af8dce2ac579"
 meta-ti           = "HEAD:6dea1b68af73cc1c6bcf4c3f780ed6fcce770adb"
 meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
+```
