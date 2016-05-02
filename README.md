@@ -75,3 +75,30 @@ meta-baylibre     = "master:a9b30448567cfc2d4fcbd706dae6bf364e6feebc"
 meta-ti           = "HEAD:6dea1b68af73cc1c6bcf4c3f780ed6fcce770adb"
 meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
 ```
+
+## Tips ##
+
+Some bitbake tips to rebuild stuff from the build_bin folder.
+
+ * Force rebuild u-boot
+
+```
+bitbake -c clean  u-boot
+bitbake u-boot
+```
+
+ * Force rebuild rootfs image
+
+```
+bitbake -c clean  baylibre-acme-image
+bitbake baylibre-acme-image
+```
+
+ * Force rebuild kernel
+
+```
+bitbake -c clean  linux-yocto-mainline
+bitbake linux-yocto-mainline
+```
+
+
