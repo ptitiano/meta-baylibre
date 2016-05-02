@@ -9,6 +9,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}:"
 inherit update-rc.d systemd
 
 INITSCRIPT_NAME = "acme-iio-init"
+INITSCRIPT_PARAMS = "start 99 . stop 0 ."
 
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE_${PN} = "acme-iio-init.service"
@@ -18,8 +19,10 @@ SRC_URI = "file://acme-iio-init \
 
 do_install_append() {
     install -d ${D}${sysconfdir}/init.d/
-    install -m 0755 ${WORKDIR}/acme-iio-init ${D}${sysconfdir}/init.d/
     install -d ${D}${systemd_unitdir}/system/
+    install -d ${D}${bindir}
+    install -m 0755 ${WORKDIR}/acme-iio-init ${D}${bindir}
+    ln -s ${bindir}/acme-iio-init ${D}${sysconfdir}/init.d/acme-iio-init
     install -m 0644 ${WORKDIR}/acme-iio-init.service ${D}${systemd_unitdir}/system
     sed -i -e 's,@BINDIR@,${bindir},g' ${D}${systemd_unitdir}/system/acme-iio-init.service
 }
