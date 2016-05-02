@@ -233,8 +233,7 @@ if [ $DEBUG = true ]; then
     if test $MACH = "acme-virt-arm" || test $MACH = "acme-virt-x86"; then
         bitbake acme-virt-image-dev
     else
-#        bitbake acme-image-dev
-        bitbake core-image-minimal
+        bitbake baylibre-acme-image-dev
     fi
 else
     echo "minimal rootfs (for $MACH)."
