@@ -39,11 +39,7 @@ chip in use.
 
 ## SDcard creation ##
 
-Simply call wic with: 
-
-```
-    wic create sdimage-bootpart -e baylibre-acme-image
-```
+ * make sdcard
 
 then:
 

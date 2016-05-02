@@ -40,3 +40,7 @@ image_virt_arm:
 qemuarm:
 	. poky/oe-init-build-env build_virt-arm
 	runqemu $(QEMU_OPTS)
+
+sdcard:
+	. poky/oe-init-build-env build_bin
+	cd build_bin && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e baylibre-acme-image
