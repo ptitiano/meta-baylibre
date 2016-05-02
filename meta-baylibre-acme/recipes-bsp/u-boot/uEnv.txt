@@ -13,6 +13,10 @@ fdt_high=0xffffffff
 
 mmcroot=/dev/mmcblk0p2
 
+## yocto name
+#
+fdtfile=zImage-am335x-boneblack.dtb
+
 loadximage=load mmc 0:1 ${loadaddr} zImage
 loadxfdt=load mmc 0:1 ${fdtaddr} ${fdtfile}
 
