@@ -74,6 +74,13 @@ meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
 
 ## Tips ##
 
+
+### Setting the Hostname ###
+
+Edit meta-baylibre-acme/conf/distro/acme-baylibre.conf and change hostname_pn-base-files.
+
+### Partial rebuild ###
+
 Some bitbake tips to rebuild stuff from the build_bin folder.
 
  * Force rebuild u-boot
