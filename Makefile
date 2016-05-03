@@ -1,5 +1,7 @@
 BUILD_SCRIPT := meta-baylibre/build.sh
 
+MY_BUILDDIR ?= build
+
 # Set number of threads
 NUM_THREADS ?= 16
 
@@ -14,15 +16,21 @@ COMMON_ARGS := ${BUILD_SCRIPT} \
 COMMON_BIN := \
                 ${COMMON_ARGS} \
                 -m beaglebone \
-                -b build \
+                -b $(MY_BUILDDIR) \
 
 all: image_bin
 
+distclean:
+	rm -rf $(MY_BUILDDIR)
+
 clean:
-	rm -rf build_*
+	-cd $(MY_BUILDDIR) && bitbake -c clean  u-boot
+	-cd $(MY_BUILDDIR) && bitbake -c clean  baylibre-acme-image
+	-cd $(MY_BUILDDIR) && bitbake -c clean  linux-yocto-mainline
+	-cd $(MY_BUILDDIR) && bitbake -c clean  acme-utils
 
 image_bin:
 	$(COMMON_BIN)
 
 sdcard:
-	cd build && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e baylibre-acme-image
+	cd $(MY_BUILDDIR) && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e baylibre-acme-image

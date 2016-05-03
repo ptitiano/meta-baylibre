@@ -1,4 +1,4 @@
-# BayLibre meta layer for Poky (WIP) #
+# BayLibre meta layer for Poky #
 
 This README file contains information on the contents of the
 baylibre layer.
@@ -9,7 +9,6 @@ Please see the corresponding sections below for details.
 
  * __meta_baylibre__      is the layer for common scripts/classes/ custom recipes.
  * __meta-baylibre-acme__ is the layer for the current beaglebone-based acme board.
- * __meta-baylibre-virt__ is the layer to experiment with qemuarm.
 
 ## Fetching and preparing ##
 
@@ -25,6 +24,14 @@ Create a link for the makefile:
 build with:
 
  * ACME $> make
+
+clean chosen packages (kernel, u-boot, distro images, acem-utils) with
+
+ * ACME $> make clean 
+
+rebuild everything
+
+ * ACME $> make distclean
 
 ## Built kernel and images ##
 
