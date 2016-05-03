@@ -1,7 +1,7 @@
 BUILD_SCRIPT := meta-baylibre/build.sh
 
 # Set number of threads
-NUM_THREADS ?= 9
+NUM_THREADS ?= 16
 
 COMMON_ARGS := ${BUILD_SCRIPT} \
                                 -p poky/ \
@@ -11,15 +11,10 @@ COMMON_ARGS := ${BUILD_SCRIPT} \
                                 -j $(NUM_THREADS) \
                                 -t $(NUM_THREADS)
 
-# Machine: swi-mdm9x28
-
-COMMON_BBB := \
-                ${COMMON_ARGS} \
-                -m beaglebone
-
 COMMON_BIN := \
-                ${COMMON_BBB} \
-                -b build_bin \
+                ${COMMON_ARGS} \
+                -m beaglebone \
+                -b build \
 
 all: image_bin
 
@@ -29,18 +24,5 @@ clean:
 image_bin:
 	$(COMMON_BIN)
 
-COMMON_VIRT_ARM := \
-    $(COMMON_ARGS) \
-    -m acme-virt-arm \
-    -b build_virt-arm
-
-image_virt_arm:
-	$(COMMON_VIRT_ARM) -d
-
-qemuarm:
-	. poky/oe-init-build-env build_virt-arm
-	runqemu $(QEMU_OPTS)
-
 sdcard:
-	. poky/oe-init-build-env build_bin
-	cd build_bin && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e baylibre-acme-image
+	cd build && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e baylibre-acme-image
