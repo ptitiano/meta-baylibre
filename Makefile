@@ -1,3 +1,14 @@
+#
+# Copyright (c) BayLibre 2016
+# 
+# Please create a link to this file from
+# the project toplevel, and invoke with
+# make from there.
+#
+# ln -s meta-baylibre/Makefile Makefile
+#
+
+
 BUILD_SCRIPT := meta-baylibre/build.sh
 
 MY_BUILDDIR ?= build
