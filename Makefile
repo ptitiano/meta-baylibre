@@ -12,9 +12,13 @@
 BUILD_SCRIPT := meta-baylibre/build.sh
 
 MY_BUILDDIR ?= build
+OUTDIR = $(MY_BUILDDIR)
+IMAGENAME ?= baylibre-acme-image
 
 # Set number of threads
 NUM_THREADS ?= 16
+
+.PHONY: $(MY_BUILDDIR)
 
 COMMON_ARGS := ${BUILD_SCRIPT} \
                                 -p poky/ \
@@ -29,7 +33,7 @@ COMMON_BIN := \
                 -m beaglebone \
                 -b $(MY_BUILDDIR) \
 
-all: image_bin
+all: sdcard
 
 distclean:
 	rm -rf $(MY_BUILDDIR)
@@ -40,8 +44,12 @@ clean:
 	-cd $(MY_BUILDDIR) && bitbake -c clean  linux-yocto-mainline
 	-cd $(MY_BUILDDIR) && bitbake -c clean  acme-utils
 
-image_bin:
+$(MY_BUILDDIR):
 	$(COMMON_BIN)
 
-sdcard:
-	cd $(MY_BUILDDIR) && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e baylibre-acme-image
+sdcard: $(MY_BUILDDIR)
+	mkdir -p $(OUTDIR)
+	cd $(MY_BUILDDIR) && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
+	cd $(MY_BUILDDIR) && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
+	@echo "scp ${USER}@${shell hostname}:$(CURDIR)/$(OUTDIR)/build/*.direct"
+#	cd $(MY_BUILDDIR) && ../poky/scripts/wic create ../meta-baylibre/meta-baylibre-acme/beaglebone.wks -e baylibre-acme-image
