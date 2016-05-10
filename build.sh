@@ -169,6 +169,9 @@ enable_layer "meta-networking" "$OE/meta-networking"
 # Enable the meta-python layer
 enable_layer "meta-python" "$OE/meta-python"
 
+#enable_layer "meta-swi-extras" "$TOPLEVEL/meta-baylibre/meta-swi-extras"
+#enable_layer "meta-swi" "$TOPLEVEL/meta-baylibre/meta-swi"
+#enable_layer "meta-swi-bin" "$TOPLEVEL/meta-baylibre/meta-swi-extras/meta-swi-bin"
 
 
 ## Conf: local.conf
@@ -236,7 +239,7 @@ if [ $DEBUG = true ]; then
         bitbake baylibre-acme-image-dev
     fi
 else
-    echo "minimal rootfs (for $MACH)."
+    echo "baylibre-acme-image (for $MACH)."
     sed -e 's:^\(PACKAGE_CLASSES\).*:\1 = \"package_ipk\":' -i $BD/conf/local.conf
     if test $MACH = "acme-virt-arm" || test $MACH = "acme-virt-x86"; then
         echo "No minimal image for $MACH."

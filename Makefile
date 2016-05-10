@@ -40,7 +40,7 @@ distclean:
 
 clean:
 	-cd $(MY_BUILDDIR) && bitbake -c clean  u-boot
-	-cd $(MY_BUILDDIR) && bitbake -c clean  baylibre-acme-image
+	-cd $(MY_BUILDDIR) && bitbake -c clean  $(IMAGENAME)
 	-cd $(MY_BUILDDIR) && bitbake -c clean  linux-yocto-mainline
 	-cd $(MY_BUILDDIR) && bitbake -c clean  acme-utils
 
