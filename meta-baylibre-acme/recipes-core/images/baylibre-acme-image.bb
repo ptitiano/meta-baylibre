@@ -16,5 +16,6 @@ IMAGE_INSTALL += "util-linux-mount"
 IMAGE_INSTALL += "acme-utils"
 IMAGE_INSTALL += "acme-iio-init"
 IMAGE_INSTALL += "i2c-tools"
+IMAGE_INSTALL += "libiio"
 
 IMAGE_BOOT_FILES += "zImage zImage-am335x-boneblack.dtb uEnv.txt"

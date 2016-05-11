@@ -1,0 +1,15 @@
+[Unit]
+Description=IIO Deamon
+After=network.target
+
+# After and not Wants
+After=acme-iio-init.service
+
+[Service]
+PrivateTmp=true
+Type=forking
+PIDFile=/var/run/iiod.pid
+ExecStart=/usr/sbin/iiod
+
+[Install]
+WantedBy=multi-user.target
