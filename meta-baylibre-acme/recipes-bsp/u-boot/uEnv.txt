@@ -1,8 +1,8 @@
 
-usb start
+#usb start
 hostname=baylibre-acme
-device=eth0
-autoconf=on
+#device=eth0
+#autoconf=on
 
 loadaddr=0x82000000
 fdtaddr=0x88000000
@@ -22,6 +22,6 @@ loadxfdt=load mmc 0:1 ${fdtaddr} ${fdtfile}
 
 loadall=run loadximage; run loadxfdt;
 
-mmcargs=setenv bootargs console=tty0 ip=dhcp console=${console} ${optargs} ${cape_disable} ${cape_enable} root=${mmcroot} rootfstype=${mmcrootfstype} ${cmdline}
+mmcargs=setenv bootargs ip=dhcp console=${console} ${optargs} ${cape_disable} ${cape_enable} root=${mmcroot} rootfstype=${mmcrootfstype} ${cmdline} quiet mtdoops.mtddev=omap2.nand
 
 uenvcmd=run loadall; run mmcargs; bootz ${loadaddr} - ${fdtaddr};
