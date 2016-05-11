@@ -15,6 +15,7 @@ IMAGE_INSTALL += "util-linux-mount"
 
 IMAGE_INSTALL += "acme-utils"
 IMAGE_INSTALL += "acme-iio-init"
+IMAGE_INSTALL += "acme-cape-init"
 IMAGE_INSTALL += "i2c-tools"
 IMAGE_INSTALL += "libiio"
 

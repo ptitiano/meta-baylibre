@@ -1,14 +1,14 @@
 [Unit]
-Description=ACME IIO probes init script
+Description=ACME cape GPIO expander init
 After=network.target
 After=systemd-modules.service
-ConditionPathExists=/sys/bus/iio/devices
+ConditionPathExists=/sys/class/gpio
 
 [Service]
 Type=oneshot
 RemainAfterExit=No
 User=root
-ExecStart=@BINDIR@/acme-iio-init
+ExecStart=@BINDIR@/acme-cape-init
 
 [Install]
 WantedBy=multi-user.target
