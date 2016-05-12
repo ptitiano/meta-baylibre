@@ -26,7 +26,8 @@ COMMON_ARGS := ${BUILD_SCRIPT} \
                                 -l meta-baylibre \
                                 -x "kernel/.git" \
                                 -j $(NUM_THREADS) \
-                                -t $(NUM_THREADS)
+                                -t $(NUM_THREADS) \
+				-i $(IMAGENAME)
 
 COMMON_BIN := \
                 ${COMMON_ARGS} \

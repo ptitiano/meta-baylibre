@@ -40,6 +40,7 @@ $0 <options ...>
     -j <number of make threads>
     -r (enable preempt-rt kernel <Test-only. Not supported>)
     -a (pass extra options for recipes, key=value separated by ::)
+    -i <imagename>
 
   Task control:
     -c (enable command line mode)
@@ -68,7 +69,7 @@ TOOLCHAIN=false
 DISTRO=acme-baylibre
 X_OPTS=
 
-while getopts ":p:o:b:l:x:m:t:j:w:v:a:F:cdrqsgkh" arg
+while getopts ":p:o:b:l:x:i:m:t:j:w:v:a:F:cdrqsgkh" arg
 do
     case $arg in
     p)
@@ -91,6 +92,10 @@ do
         LINUXDIR=$(readlink -f $OPTARG)
         echo "Linux repo dir: $LINUXDIR"
         ;;
+    i)
+	IMAGENAME=$OPTARG
+	echo "IAMGE NAME: $IMAGENAME"
+	;;
     m)
         MACH=$OPTARG
         echo "SWI machine: $MACH"
@@ -245,7 +250,7 @@ else
         echo "No minimal image for $MACH."
         exit 1
     else
-        bitbake baylibre-acme-image
+        bitbake $IMAGENAME
     fi
 fi
 
