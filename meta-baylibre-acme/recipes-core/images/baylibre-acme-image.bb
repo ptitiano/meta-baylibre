@@ -18,5 +18,6 @@ IMAGE_INSTALL += "acme-iio-init"
 IMAGE_INSTALL += "acme-cape-init"
 IMAGE_INSTALL += "i2c-tools"
 IMAGE_INSTALL += "libiio"
+IMAGE_INSTALL += "btrfs-tools"
 
 IMAGE_BOOT_FILES += "zImage zImage-am335x-boneblack.dtb uEnv.txt"
