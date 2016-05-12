@@ -64,9 +64,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 # defconfig fragments
 SRC_URI += "file://defconfig \
+	file://v2-2-2-iio-ina2xx-Remove-trace_printk-debug-statments.patch \
 	file://0002-acme-enable-i2c-1-i2c-2-for-BeagleBone-Black.patch \
-	file://0003-acme-at24-serial-number-read.patch"
-#	    file://iio.cfg"
+	file://0003-acme-at24-serial-number-read.patch \
+	file://btrfs.cfg"
 
 # Modify SRCREV to a different commit hash in a copy of this recipe to
 # build a different release of the Linux kernel.
