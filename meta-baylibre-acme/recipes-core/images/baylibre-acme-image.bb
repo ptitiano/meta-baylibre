@@ -20,4 +20,6 @@ IMAGE_INSTALL += "i2c-tools"
 IMAGE_INSTALL += "libiio"
 IMAGE_INSTALL += "btrfs-tools"
 
+IMAGE_INSTALL += "systemd-analyze"
+
 IMAGE_BOOT_FILES += "zImage zImage-am335x-boneblack.dtb uEnv.txt"
