@@ -43,7 +43,7 @@ index 55c0e95..1825a0e 100644
 +	pinctrl-0 = <&i2c1_pins>;
 +
 +	status = "okay";
-+	clock-frequency = <400000>;
++	clock-frequency = <450000>;
 +};
 +
 +&i2c2 {
@@ -51,7 +51,7 @@ index 55c0e95..1825a0e 100644
 +	pinctrl-0 = <&i2c2_pins>;
 +
 +	status = "okay";
-+	clock-frequency = <400000>;
++	clock-frequency = <450000>;
 +};
 +
 +
