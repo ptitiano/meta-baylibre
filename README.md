@@ -7,25 +7,40 @@ Please see the corresponding sections below for details.
 
 ## Layers and sub-layers ##
 
- * __meta_baylibre__      is the layer for common scripts/classes/ custom recipes.
+ * __meta-baylibre__      is the layer for common scripts/classes/ custom recipes.
  * __meta-baylibre-acme__ is the layer for the current beaglebone-based acme board.
 
 ## Fetching and preparing ##
 
 Get the repo with:
 
- * ACME $> repo init -u https://github.com/BayLibre/manifests.git -m acme/poky-wip.xml
+ * ACME $> repo init -u https://github.com/BayLibre/manifests.git -m acme/poky.xml
  * ACME $> repo sync
 
 Create a link for the makefile:
 
  * ACME $> ln -s meta-baylibre/Makefile Makefile
 
+Which gives you something like:
+
+```
+mtitinger@build:~/acme-poky$ ls -algo
+total 32
+drwxrwxr-x  8 4096 mai   13 10:12 .
+drwxr-xr-x 19 4096 mai   13 10:17 ..
+lrwxrwxrwx  1   22 avril 28 11:02 Makefile -> meta-baylibre/Makefile
+drwxrwxr-x  9 4096 mai   13 10:19 meta-baylibre
+drwxrwxr-x 18 4096 avril 28 11:02 meta-openembedded
+drwxrwxr-x 13 4096 mai    9 16:49 meta-ti
+drwxrwxr-x 12 4096 mai    3 16:07 poky
+drwxrwxr-x  7 4096 mai   13 10:19 .repo
+```
+
 build with:
 
  * ACME $> make
 
-clean chosen packages (kernel, u-boot, distro images, acem-utils) with
+clean chosen packages (kernel, u-boot, distro images, acme-utils) with
 
  * ACME $> make clean 
 
@@ -35,6 +50,8 @@ rebuild everything
 
 ## Built kernel and images ##
 
+### Recipes ###
+
 The distro builds a custom kernel pulled from mainline, in
 order to have the latest drivers for the power monitoring
 chip in use.
@@ -43,6 +60,14 @@ chip in use.
  * kernel recipe:    linux-yocto-mainline
  * DTB file link:    zImage-am335x-boneblack.dtb
  * kernel file link: zImage
+
+### Image Features ###
+
+Noticeable packages are:
+
+ * avahi: this board can be accessed with ssh root@baylibre-acme.local (or with the hostname you set)
+ * libiio: iiod is started, so that the board can be operated remotely
+ * systemd
 
 ## SDcard creation ##
 
@@ -80,7 +105,6 @@ meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
 ```
 
 ## Tips ##
-
 
 ### Setting the Hostname ###
 
