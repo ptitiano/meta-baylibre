@@ -12,6 +12,7 @@ FSTYPE_VIRT ?= "ext3"
 IMAGE_INSTALL += "util-linux"
 IMAGE_INSTALL += "util-linux-blkid"
 IMAGE_INSTALL += "util-linux-mount"
+IMAGE_INSTALL += "tree"
 
 IMAGE_INSTALL += "acme-utils"
 IMAGE_INSTALL += "acme-iio-init"
