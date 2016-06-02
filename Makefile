@@ -50,7 +50,5 @@ $(MY_BUILDDIR):
 
 sdcard: $(MY_BUILDDIR)
 	mkdir -p $(OUTDIR)
-	cd $(MY_BUILDDIR) && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
-	cd $(MY_BUILDDIR) && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
-	@echo "scp ${USER}@${shell hostname}:$(CURDIR)/$(OUTDIR)/build/*.direct"
-#	cd $(MY_BUILDDIR) && ../poky/scripts/wic create ../meta-baylibre/meta-baylibre-acme/beaglebone.wks -e baylibre-acme-image
+	source poky/oe-init-build-env && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
+	source poky/oe-init-build-env && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
