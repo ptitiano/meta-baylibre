@@ -60,7 +60,7 @@ fi
 
 # Default options
 BD="$scriptdir/../build"
-MACH=beaglebone
+MACH=beaglebone-acme
 DEBUG=false
 TASKS=4
 THREADS=4

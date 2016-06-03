@@ -31,7 +31,7 @@ COMMON_ARGS := ${BUILD_SCRIPT} \
 
 COMMON_BIN := \
                 ${COMMON_ARGS} \
-                -m beaglebone \
+                -m beaglebone-acme \
                 -b $(MY_BUILDDIR) \
 
 all: sdcard
