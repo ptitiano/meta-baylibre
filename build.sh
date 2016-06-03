@@ -153,10 +153,6 @@ enable_layer()
 
 ## SYSTEMD MIGRATION ##
 #
-enable_layer "meta-systemd" "$OE/meta-systemd"
-
-enable_layer "meta-ti" "$TOPLEVEL/meta-ti"
-
 enable_layer "meta-baylibre" "$TOPLEVEL/meta-baylibre"
 
 if test $MACH = "acme-virt-arm" || test $MACH = "acme-virt-x86"; then
@@ -167,17 +163,6 @@ fi
 
 # Enable the meta-oe layer
 enable_layer "meta-oe" "$OE/meta-oe"
-
-# Enable the meta-networking layer
-enable_layer "meta-networking" "$OE/meta-networking"
-
-# Enable the meta-python layer
-enable_layer "meta-python" "$OE/meta-python"
-
-#enable_layer "meta-swi-extras" "$TOPLEVEL/meta-baylibre/meta-swi-extras"
-#enable_layer "meta-swi" "$TOPLEVEL/meta-baylibre/meta-swi"
-#enable_layer "meta-swi-bin" "$TOPLEVEL/meta-baylibre/meta-swi-extras/meta-swi-bin"
-
 
 ## Conf: local.conf
 
