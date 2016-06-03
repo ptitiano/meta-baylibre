@@ -23,7 +23,6 @@ NUM_THREADS ?= 16
 COMMON_ARGS := ${BUILD_SCRIPT} \
                                 -p poky/ \
                                 -o meta-openembedded/ \
-                                -l meta-baylibre \
                                 -x "kernel/.git" \
                                 -j $(NUM_THREADS) \
                                 -t $(NUM_THREADS) \
@@ -40,10 +39,10 @@ distclean:
 	rm -rf $(MY_BUILDDIR)
 
 clean:
-	-cd $(MY_BUILDDIR) && bitbake -c clean  u-boot
-	-cd $(MY_BUILDDIR) && bitbake -c clean  $(IMAGENAME)
-	-cd $(MY_BUILDDIR) && bitbake -c clean  linux-yocto-mainline
-	-cd $(MY_BUILDDIR) && bitbake -c clean  acme-utils
+	-@cd $(MY_BUILDDIR) && bitbake -c clean  u-boot
+	-@cd $(MY_BUILDDIR) && bitbake -c clean  $(IMAGENAME)
+	-@cd $(MY_BUILDDIR) && bitbake -c clean  linux-yocto-mainline
+	-@cd $(MY_BUILDDIR) && bitbake -c clean  acme-utils
 
 $(MY_BUILDDIR):
 	$(COMMON_BIN)

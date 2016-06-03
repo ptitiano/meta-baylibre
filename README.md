@@ -14,27 +14,8 @@ Please see the corresponding sections below for details.
 
 Get the repo with:
 
- * ACME $> repo init -u https://github.com/BayLibre/manifests.git -m acme/poky.xml
+ * ACME $> repo init -u https://github.com/baylibre-acme/ACME
  * ACME $> repo sync
-
-Create a link for the makefile:
-
- * ACME $> ln -s meta-baylibre/Makefile Makefile
-
-Which gives you something like:
-
-```
-mtitinger@build:~/acme-poky$ ls -algo
-total 32
-drwxrwxr-x  8 4096 mai   13 10:12 .
-drwxr-xr-x 19 4096 mai   13 10:17 ..
-lrwxrwxrwx  1   22 avril 28 11:02 Makefile -> meta-baylibre/Makefile
-drwxrwxr-x  9 4096 mai   13 10:19 meta-baylibre
-drwxrwxr-x 18 4096 avril 28 11:02 meta-openembedded
-drwxrwxr-x 13 4096 mai    9 16:49 meta-ti
-drwxrwxr-x 12 4096 mai    3 16:07 poky
-drwxrwxr-x  7 4096 mai   13 10:19 .repo
-```
 
 build with:
 
@@ -82,26 +63,24 @@ then:
 ## Build Configuration ##
 
 ```
+Build image of baylibre-acme-image (for beaglebone-acme).
+
 Build Configuration:
 BB_VERSION        = "1.30.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal"
+NATIVELSBSTRING   = "Ubuntu-12.04"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "beaglebone"
+MACHINE           = "beaglebone-acme"
 DISTRO            = "acme-baylibre"
 DISTRO_VERSION    = "2.1"
 TUNE_FEATURES     = "arm armv7a vfp  neon        callconvention-hard        cortexa8"
 TARGET_FPU        = "hard"
 meta              
 meta-poky         
-meta-yocto-bsp    = "HEAD:a9b503b268e94d311f892fa00c5d6bd9ffdb228e"
-meta-python       
-meta-networking   
-meta-oe           = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
+meta-yocto-bsp    = "HEAD:8f51f6153a09f8048fb4c4ce9cf4a19655240de4"
+meta-oe           = "HEAD:247b1267bbe95719cd4877d2d3cfbaf2a2f4865a"
 meta-baylibre-acme 
-meta-baylibre     = "master:a9b30448567cfc2d4fcbd706dae6bf364e6feebc"
-meta-ti           = "HEAD:6dea1b68af73cc1c6bcf4c3f780ed6fcce770adb"
-meta-systemd      = "HEAD:6fbaf07c2b41ef833a91fe016864d0d1a3815d88"
+meta-baylibre     = "HEAD:492388497e510b59defb5e9259fda7b495b4e819"
 ```
 
 ## Tips ##

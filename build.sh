@@ -69,7 +69,7 @@ TOOLCHAIN=false
 DISTRO=acme-baylibre
 X_OPTS=
 
-while getopts ":p:o:b:l:x:i:m:t:j:w:v:a:F:cdrqsgkh" arg
+while getopts ":p:o:b:x:i:m:t:j:w:v:a:F:cdrqsgkh" arg
 do
     case $arg in
     p)
@@ -84,21 +84,17 @@ do
         BD=$(readlink -f $OPTARG)
         echo "Build dir: $BD"
         ;;
-    l)
-        SWI=$(readlink -f $OPTARG)
-        echo "SWI meta dir: $SWI"
-        ;;
     x)
         LINUXDIR=$(readlink -f $OPTARG)
         echo "Linux repo dir: $LINUXDIR"
         ;;
     i)
 	IMAGENAME=$OPTARG
-	echo "IAMGE NAME: $IMAGENAME"
+	echo "Image name: $IMAGENAME"
 	;;
     m)
         MACH=$OPTARG
-        echo "SWI machine: $MACH"
+        echo "Machine: $MACH"
         ;;
     d)
         DEBUG=true
