@@ -3,13 +3,12 @@ LIC_FILES_CHKSUM = "file://COPYING.txt;md5=7c13b3376cea0ce68d2d2da0a1b3a72c"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
-SRC_URI = "git://github.com/analogdevicesinc/libiio.git;protocol=https \
+SRC_URI = "https://github.com/analogdevicesinc/libiio/archive/${PV}.tar.gz \
 	   file://iiod.service"
+SRC_URI[md5sum] = "fbd6faa9c420659023072eb3c74ed037"
+SRC_URI[sha256sum] = "b230cfd5ef5550cebf485950d8b1f4d5cfa7d5f0814aeb7b44e530e9caecb83a"
 
-PV = "1.0+git${SRCPV}"
-SRCREV = "${AUTOREV}"
-
-S = "${WORKDIR}/git"
+S = "${WORKDIR}/libiio-${PV}"
 
 DEPENDS = "avahi libusb1 libxml2"
 
