@@ -11,6 +11,7 @@
 
 BUILD_SCRIPT := meta-baylibre/build.sh
 
+SHELL := /bin/bash
 MY_BUILDDIR ?= build
 OUTDIR = $(MY_BUILDDIR)
 IMAGENAME ?= baylibre-acme-image
