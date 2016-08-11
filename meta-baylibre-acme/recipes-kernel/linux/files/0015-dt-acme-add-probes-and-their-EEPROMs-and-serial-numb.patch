@@ -1,0 +1,145 @@
+From 92437ae69b2eaad8d02981fe681ade5f84ca4509 Mon Sep 17 00:00:00 2001
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date: Wed, 10 Aug 2016 15:40:22 +0200
+Subject: [PATCH 15/16] dt: acme: add probes and their EEPROMs and serial
+ numbers
+
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+---
+ arch/arm/boot/dts/am335x-boneblack.dts | 120 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 119 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/am335x-boneblack.dts b/arch/arm/boot/dts/am335x-boneblack.dts
+index fff0152..ca9da20 100644
+--- a/arch/arm/boot/dts/am335x-boneblack.dts
++++ b/arch/arm/boot/dts/am335x-boneblack.dts
+@@ -95,7 +95,125 @@
+ 				#gpio-cells = <2>;
+ 			};
+ 
+-			/* ina231 definitions go here */
++			acme_probe0: acme_probe0@40 {
++				compatible = "ti,ina226";
++				reg = <0x40>;
++			};
++
++			acme_probe_eeprom0: acme_probe_eeprom0@50 {
++				compatible = "at,24c02";
++				reg = <0x50>;
++			};
++
++			acme_probe_serial0: acme_probe_serial0@58 {
++				compatible = "at,24cs02";
++				reg = <0x58>;
++			};
++
++			acme_probe1: acme_probe1@41 {
++				compatible = "ti,ina226";
++				reg = <0x41>;
++			};
++
++			acme_probe_eeprom1: acme_probe_eeprom1@51 {
++				compatible = "at,24c02";
++				reg = <0x51>;
++			};
++
++			acme_probe_serial1: acme_probe_serial1@59 {
++				compatible = "at,24cs02";
++				reg = <0x59>;
++			};
++
++			acme_probe2: acme_probe2@42 {
++				compatible = "ti,ina226";
++				reg = <0x42>;
++			};
++
++			acme_probe_eeprom2: acme_probe_eeprom2@52 {
++				compatible = "at,24c02";
++				reg = <0x52>;
++			};
++
++			acme_probe_serial2: acme_probe_serial2@5a {
++				compatible = "at,24cs02";
++				reg = <0x5a>;
++			};
++
++			acme_probe3: acme_probe3@43 {
++				compatible = "ti,ina226";
++				reg = <0x43>;
++			};
++
++			acme_probe_eeprom3: acme_probe_eeprom3@53 {
++				compatible = "at,24c02";
++				reg = <0x53>;
++			};
++
++			acme_probe_serial3: acme_probe_serial3@5b {
++				compatible = "at,24cs02";
++				reg = <0x5b>;
++			};
++
++			acme_probe4: acme_probe4@44 {
++				compatible = "ti,ina226";
++				reg = <0x44>;
++			};
++
++			acme_probe_eeprom4: acme_probe_eeprom4@54 {
++				compatible = "at,24c02";
++				reg = <0x54>;
++			};
++
++			acme_probe_serial4: acme_probe_serial4@5c {
++				compatible = "at,24cs02";
++				reg = <0x5c>;
++			};
++
++			acme_probe5: acme_probe5@45 {
++				compatible = "ti,ina226";
++				reg = <0x45>;
++			};
++
++			acme_probe_eeprom5: acme_probe_eeprom5@55 {
++				compatible = "at,24c02";
++				reg = <0x55>;
++			};
++
++			acme_probe_serial5: acme_probe_serial5@5d {
++				compatible = "at,24cs02";
++				reg = <0x5d>;
++			};
++
++			acme_probe6: acme_probe6@46 {
++				compatible = "ti,ina226";
++				reg = <0x46>;
++			};
++
++			acme_probe_eeprom6: acme_probe_eeprom6@56 {
++				compatible = "at,24c02";
++				reg = <0x56>;
++			};
++
++			acme_probe_serial6: acme_probe_serial6@5e {
++				compatible = "at,24cs02";
++				reg = <0x5e>;
++			};
++
++			acme_probe7: acme_probe7@47 {
++				compatible = "ti,ina226";
++				reg = <0x47>;
++			};
++
++			acme_probe_eeprom7: acme_probe_eeprom7@57 {
++				compatible = "at,24c02";
++				reg = <0x57>;
++			};
++
++			acme_probe_serial7: acme_probe_serial7@5f {
++				compatible = "at,24cs02";
++				reg = <0x5f>;
++			};
+ 		};
+ 	};
+ };
+-- 
+2.7.0
+
