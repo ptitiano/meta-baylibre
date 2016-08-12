@@ -2,24 +2,11 @@
 #
 # ACME init
 #
-i2cset -y 1 0x21 0x00 2> /dev/null
-echo pca9534 0x21 > /sys/class/i2c-adapter/i2c-1/new_device
 
-echo 504 > /sys/class/gpio/export
-echo out > /sys/class/gpio/gpio504/direction
-
-for ADDR in 0x40 0x41 0x42 0x43 0x44 0x45 0x46 0x47
-do
-	i2cget -y 1 $ADDR && echo ina226 $ADDR > /sys/class/i2c-adapter/i2c-1/new_device \
-		&& echo 24c02 $(printf "0x%X\n" $(( $ADDR + 0x10 ))) > /sys/class/i2c-adapter/i2c-1/new_device
-done
-
-i2cset -y 1 0x20 0x00 2> /dev/null
-echo pca9535 0x20 > /sys/class/i2c-adapter/i2c-1/new_device
-
+# Power on the GPIO1 pin for each probe
+# USB and JACK probes has their SW_EN on it
 for GPIO in 489 491 493 495 497 499 501 503
 do
 	echo $GPIO > /sys/class/gpio/export
-	echo out > /sys/class/gpio/gpio$GPIO/direction
-	echo 1 > /sys/class/gpio/gpio$GPIO/value
+	echo high > /sys/class/gpio/gpio$GPIO/direction
 done
