@@ -6,8 +6,8 @@ DEPENDS = ""
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=578ecfeb82fabd60bb6310f0bf6af799"
 
-SRC_URI = "git://github.com/bayLibre-acme/acme-utils.git;branch=python-cli"
-SRCREV = "python-cli"
+SRC_URI = "git://github.com/bayLibre-acme/acme-utils.git;branch=master"
+SRCREV = "master"
 
 S = "${WORKDIR}/git"
 
