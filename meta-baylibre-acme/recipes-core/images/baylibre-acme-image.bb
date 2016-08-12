@@ -19,7 +19,8 @@ IMAGE_INSTALL += "acme-iio-init"
 IMAGE_INSTALL += "acme-cape-init"
 IMAGE_INSTALL += "i2c-tools"
 IMAGE_INSTALL += "libiio"
-IMAGE_INSTALL += "btrfs-tools"
+
+IMAGE_INSTALL += "libusbg"
 
 IMAGE_INSTALL += "systemd-analyze"
 
