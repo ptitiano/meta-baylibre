@@ -65,6 +65,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 # defconfig fragments
 SRC_URI += "file://defconfig \
 	file://iio.cfg \
+	file://usb-gadget.cfg \
 	file://0001-eeprom-at24-improve-the-device_id-table-readability.patch \
 	file://0002-eeprom-at24-move-at24_read-below-at24_eeprom_write.patch \
 	file://0003-eeprom-at24-coding-style-fixes.patch \
