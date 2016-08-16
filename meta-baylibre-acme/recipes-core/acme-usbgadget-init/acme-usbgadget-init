@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# ACME USB Gadget Init
+#
+
+# Enable ACM + ECM
+gadget-acm-ecm
+
+sleep 1
+
+# Enable Getty
+systemctl enable getty@ttyGS0.service
+systemctl start getty@ttyGS0.service
+
+# Setup usb0 network interface
+ifconfig usb0 up 10.65.34.1 netmask 255.255.255.0
+
+# Enable udhcpd
+udhcpd /etc/udhcpd.conf
