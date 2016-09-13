@@ -190,5 +190,5 @@ index e7db137..6acf35a 100644
  	writable = !(chip.flags & AT24_FLAG_READONLY);
  	if (writable) {
 -- 
-2.7.0
+2.7.4
 

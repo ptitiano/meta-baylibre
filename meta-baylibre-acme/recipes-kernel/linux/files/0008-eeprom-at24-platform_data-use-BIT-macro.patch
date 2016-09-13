@@ -40,5 +40,5 @@ index be830b1..fcfdfe3 100644
  	void		(*setup)(struct nvmem_device *nvmem, void *context);
  	void		*context;
 -- 
-2.7.0
+2.7.4
 

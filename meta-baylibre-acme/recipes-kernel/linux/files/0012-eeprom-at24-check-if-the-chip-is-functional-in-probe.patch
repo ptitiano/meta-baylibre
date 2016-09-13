@@ -1,6 +1,6 @@
-From 6c022cef0af9c6003702fb963d0290b12e005d97 Mon Sep 17 00:00:00 2001
+From d5777e5d89718d86b62a4f06ef0413cc37dcd18b Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date: Wed, 3 Aug 2016 12:34:44 +0200
+Date: Fri, 12 Aug 2016 13:32:57 +0200
 Subject: [PATCH 12/16] eeprom: at24: check if the chip is functional in
  probe()
 
@@ -18,38 +18,51 @@ Try to read a single byte in probe() and bail-out with -ENODEV if the
 read fails.
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Signed-off-by: Wolfram Sang <wsa@the-dreams.de>
 ---
- drivers/misc/eeprom/at24.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/misc/eeprom/at24.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index 3cdf8e1..ed1e4eb 100644
+index 3cdf8e1..051b147 100644
 --- a/drivers/misc/eeprom/at24.c
 +++ b/drivers/misc/eeprom/at24.c
 @@ -593,6 +593,7 @@ static int at24_probe(struct i2c_client *client, const struct i2c_device_id *id)
  	struct at24_data *at24;
  	int err;
  	unsigned i, num_addresses;
-+	char c;
++	u8 test_byte;
  
  	if (client->dev.platform_data) {
  		chip = *(struct at24_platform_data *)client->dev.platform_data;
-@@ -780,6 +781,15 @@ static int at24_probe(struct i2c_client *client, const struct i2c_device_id *id)
- 	if (chip.setup)
- 		chip.setup(at24->nvmem, chip.context);
+@@ -743,6 +744,18 @@ static int at24_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 		}
+ 	}
  
-+	err = at24_read(at24, 0, &c, 1);
++	i2c_set_clientdata(client, at24);
++
++	/*
++	 * Perform a one-byte test read to verify that the
++	 * chip is functional.
++	 */
++	err = at24_read(at24, 0, &test_byte, 1);
 +	if (err) {
-+		dev_err(&client->dev,
-+			"error reading the test byte from EEPROM: %d\n", err);
-+		nvmem_unregister(at24->nvmem);
 +		err = -ENODEV;
 +		goto err_clients;
 +	}
 +
- 	return 0;
+ 	at24->nvmem_config.name = dev_name(&client->dev);
+ 	at24->nvmem_config.dev = &client->dev;
+ 	at24->nvmem_config.read_only = !writable;
+@@ -764,8 +777,6 @@ static int at24_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 		goto err_clients;
+ 	}
  
- err_clients:
+-	i2c_set_clientdata(client, at24);
+-
+ 	dev_info(&client->dev, "%u byte %s EEPROM, %s, %u bytes/write\n",
+ 		chip.byte_len, client->name,
+ 		writable ? "writable" : "read-only", at24->write_max);
 -- 
-2.7.0
+2.7.4
 

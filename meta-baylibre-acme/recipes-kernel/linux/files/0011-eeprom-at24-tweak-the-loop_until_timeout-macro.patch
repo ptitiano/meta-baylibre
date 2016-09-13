@@ -45,5 +45,5 @@ index 04e91e3..3cdf8e1 100644
  
  static const struct i2c_device_id at24_ids[] = {
 -- 
-2.7.0
+2.7.4
 
