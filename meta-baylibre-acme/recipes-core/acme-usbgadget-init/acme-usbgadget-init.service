@@ -4,8 +4,8 @@ After=network.target
 After=systemd-modules.service
 
 [Service]
-Type=oneshot
-RemainAfterExit=No
+Type=simple
+RemainAfterExit=Yes
 User=root
 ExecStart=@BINDIR@/acme-usbgadget-init
 
