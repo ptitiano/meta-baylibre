@@ -78,9 +78,10 @@ SRC_URI += "file://defconfig \
 	file://0010-eeprom-at24-add-support-for-at24mac-series.patch \
 	file://0011-eeprom-at24-tweak-the-loop_until_timeout-macro.patch \
 	file://0012-eeprom-at24-check-if-the-chip-is-functional-in-probe.patch \
-	file://0013-dt-acme-add-gpio-multiplexer-for-i2c1.patch \
-	file://0014-dt-acme-add-cape-EEPROMs.patch \
-	file://0015-dt-acme-add-probes-and-their-EEPROMs-and-serial-numb.patch \
+	file://0013-gpio-pca953x-fix-a-lockdep-warning.patch \
+	file://0014-acme-ina226-add-the-poweron-gpio-support.patch \
+	file://0015-dt-acme-add-device-tree-support-for-acme.patch \
+	file://0016-arm-add-acme_defconfig.patch \
 "
 
 # Modify SRCREV to a different commit hash in a copy of this recipe to

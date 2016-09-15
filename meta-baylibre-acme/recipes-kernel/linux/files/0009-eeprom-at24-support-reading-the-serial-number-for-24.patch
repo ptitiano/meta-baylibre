@@ -151,5 +151,5 @@ index fcfdfe3..d595874 100644
  	void		(*setup)(struct nvmem_device *nvmem, void *context);
  	void		*context;
 -- 
-2.7.0
+2.7.4
 

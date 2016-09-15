@@ -1,0 +1,13 @@
+[Unit]
+Description=ACME usbgadget interface init
+After=network.target
+After=systemd-modules.service
+
+[Service]
+Type=simple
+RemainAfterExit=Yes
+User=root
+ExecStart=@BINDIR@/acme-usbgadget-init
+
+[Install]
+WantedBy=multi-user.target

@@ -22,6 +22,6 @@ loadxfdt=load mmc 0:1 ${fdtaddr} ${fdtfile}
 
 loadall=run loadximage; run loadxfdt;
 
-mmcargs=setenv bootargs ip=dhcp console=${console} ${optargs} ${cape_disable} ${cape_enable} root=${mmcroot} rootfstype=${mmcrootfstype} ${cmdline} quiet mtdoops.mtddev=omap2.nand
+mmcargs=setenv bootargs ip=none console=${console} ${optargs} ${cape_disable} ${cape_enable} root=${mmcroot} rootfstype=${mmcrootfstype} ${cmdline} quiet mtdoops.mtddev=omap2.nand
 
 uenvcmd=run loadall; run mmcargs; bootz ${loadaddr} - ${fdtaddr};
