@@ -1,0 +1,38 @@
+From 2a7ed5bad1d1cc2cb6e8e786701bd9e94596220b Mon Sep 17 00:00:00 2001
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date: Mon, 12 Sep 2016 14:50:02 +0200
+Subject: [PATCH 13/16] gpio: pca953x: fix a lockdep warning
+
+This is a workaround for an issue currently discussed on LKML. We need
+something that lives in .data and can be used by lockdep to
+distinguish two lock classes. Let's use device id.
+
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+---
+ drivers/gpio/gpio-pca953x.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpio/gpio-pca953x.c b/drivers/gpio/gpio-pca953x.c
+index 5e3be32..40b96bf 100644
+--- a/drivers/gpio/gpio-pca953x.c
++++ b/drivers/gpio/gpio-pca953x.c
+@@ -739,6 +739,7 @@ static const struct of_device_id pca953x_dt_ids[];
+ static int pca953x_probe(struct i2c_client *client,
+ 				   const struct i2c_device_id *id)
+ {
++	struct lock_class_key *lock_key = (struct lock_class_key *)id;
+ 	struct pca953x_platform_data *pdata;
+ 	struct pca953x_chip *chip;
+ 	int irq_base = 0;
+@@ -783,7 +784,7 @@ static int pca953x_probe(struct i2c_client *client,
+ 
+ 	chip->chip_type = PCA_CHIP_TYPE(chip->driver_data);
+ 
+-	mutex_init(&chip->i2c_lock);
++	__mutex_init(&chip->i2c_lock, "chip->i2c_lock", lock_key);
+ 
+ 	/* initialize cached registers from their original values.
+ 	 * we can't share this chip with another i2c master.
+-- 
+2.7.4
+

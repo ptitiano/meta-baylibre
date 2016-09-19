@@ -16,10 +16,11 @@ IMAGE_INSTALL += "tree"
 
 IMAGE_INSTALL += "acme-utils"
 IMAGE_INSTALL += "acme-iio-init"
-IMAGE_INSTALL += "acme-cape-init"
+IMAGE_INSTALL += "acme-usbgadget-init"
 IMAGE_INSTALL += "i2c-tools"
 IMAGE_INSTALL += "libiio"
-IMAGE_INSTALL += "btrfs-tools"
+
+IMAGE_INSTALL += "libusbg"
 
 IMAGE_INSTALL += "systemd-analyze"
 

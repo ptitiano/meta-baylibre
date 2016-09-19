@@ -54,20 +54,35 @@ require recipes-kernel/linux/linux-yocto.inc
 
 # Override SRC_URI in a copy of this recipe to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRCREV = "v4.5"
+SRCREV = "v4.7"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=git;nocheckout=1"
 
-LINUX_VERSION = "4.5"
+LINUX_VERSION = "4.7"
 LINUX_VERSION_EXTENSION_append = "-mainline"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 # defconfig fragments
 SRC_URI += "file://defconfig \
-	file://v2-2-2-iio-ina2xx-Remove-trace_printk-debug-statments.patch \
-	file://0002-acme-enable-i2c-1-i2c-2-for-BeagleBone-Black.patch \
-	file://0003-acme-at24-serial-number-read.patch \
-	file://btrfs.cfg"
+	file://iio.cfg \
+	file://usb-gadget.cfg \
+	file://0001-eeprom-at24-improve-the-device_id-table-readability.patch \
+	file://0002-eeprom-at24-move-at24_read-below-at24_eeprom_write.patch \
+	file://0003-eeprom-at24-coding-style-fixes.patch \
+	file://0004-eeprom-at24-call-read-write-functions-via-function-p.patch \
+	file://0005-eeprom-at24-hide-the-read-write-loop-behind-a-macro.patch \
+	file://0006-eeprom-at24-split-at24_eeprom_read-into-specialized-.patch \
+	file://0007-eeprom-at24-split-at24_eeprom_write-into-specialized.patch \
+	file://0008-eeprom-at24-platform_data-use-BIT-macro.patch \
+	file://0009-eeprom-at24-support-reading-the-serial-number-for-24.patch \
+	file://0010-eeprom-at24-add-support-for-at24mac-series.patch \
+	file://0011-eeprom-at24-tweak-the-loop_until_timeout-macro.patch \
+	file://0012-eeprom-at24-check-if-the-chip-is-functional-in-probe.patch \
+	file://0013-gpio-pca953x-fix-a-lockdep-warning.patch \
+	file://0014-acme-ina226-add-the-poweron-gpio-support.patch \
+	file://0015-dt-acme-add-device-tree-support-for-acme.patch \
+	file://0016-arm-add-acme_defconfig.patch \
+"
 
 # Modify SRCREV to a different commit hash in a copy of this recipe to
 # build a different release of the Linux kernel.
