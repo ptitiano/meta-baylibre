@@ -22,6 +22,8 @@ IMAGE_INSTALL += "libiio"
 
 IMAGE_INSTALL += "libusbg"
 
+IMAGE_INSTALL += "sigrok-cli"
+
 IMAGE_INSTALL += "systemd-analyze"
 
 IMAGE_BOOT_FILES += "zImage zImage-am335x-boneblack.dtb uEnv.txt"
