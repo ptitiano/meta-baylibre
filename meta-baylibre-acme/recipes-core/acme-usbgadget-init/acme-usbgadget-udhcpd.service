@@ -1,0 +1,12 @@
+[Unit]
+Description=ACME usbgadget ethernet dhcp server init
+Wants=sys-subsystem-net-devices-usb0.device
+After=sys-subsystem-net-devices-usb0.device
+
+[Service]
+Type=simple
+User=root
+ExecStart=@BINDIR@/acme-usbgadget-udhcpd
+
+[Install]
+WantedBy=multi-user.target

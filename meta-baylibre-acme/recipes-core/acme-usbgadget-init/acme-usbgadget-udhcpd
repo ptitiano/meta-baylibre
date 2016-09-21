@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# ACME USB Gadget network dhcp server
+#
+
+# Setup usb0 network interface
+ifconfig usb0 up 10.65.34.1 netmask 255.255.255.0
+
+# Create empty leases file is necessary
+touch /var/lib/misc/udhcpd.leases
+
+# Enable udhcpd
+udhcpd -f /etc/udhcpd.conf
