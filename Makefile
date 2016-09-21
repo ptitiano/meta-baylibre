@@ -40,10 +40,10 @@ distclean:
 	rm -rf $(MY_BUILDDIR)
 
 clean:
-	-@cd $(MY_BUILDDIR) && bitbake -c clean  u-boot
-	-@cd $(MY_BUILDDIR) && bitbake -c clean  $(IMAGENAME)
-	-@cd $(MY_BUILDDIR) && bitbake -c clean  linux-yocto-mainline
-	-@cd $(MY_BUILDDIR) && bitbake -c clean  acme-utils
+	-source poky/oe-init-build-env && bitbake -c clean  u-boot
+	-source poky/oe-init-build-env && bitbake -c clean  $(IMAGENAME)
+	-source poky/oe-init-build-env && bitbake -c clean  linux-yocto-mainline
+	-source poky/oe-init-build-env && bitbake -c clean  acme-utils
 
 $(MY_BUILDDIR):
 	$(COMMON_BIN)
