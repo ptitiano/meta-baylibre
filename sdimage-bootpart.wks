@@ -3,4 +3,4 @@
 # are located in the first vfat partition.
 
 part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot --active --align 4 --size 16
-part / --source rootfs --ondisk mmcblk --fstype=ext2 --label root 
+part / --source rootfs --ondisk mmcblk --fstype=ext2 --label root --size 650M
