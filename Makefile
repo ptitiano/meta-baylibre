@@ -52,3 +52,6 @@ sdcard: $(MY_BUILDDIR)
 	mkdir -p $(OUTDIR)
 	source poky/oe-init-build-env && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
 	source poky/oe-init-build-env && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
+
+sdk: $(MY_BUILDDIR)
+	source poky/oe-init-build-env && bitbake $(IMAGENAME) -c populate_sdk
