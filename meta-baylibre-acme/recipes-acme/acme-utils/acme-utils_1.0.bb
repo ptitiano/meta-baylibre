@@ -11,6 +11,8 @@ SRCREV = "next"
 
 S = "${WORKDIR}/git"
 
+RDEPENDS_${PN} = "python3-modules"
+
 inherit systemd
 
 SYSTEMD_SERVICE_${PN} = "pyacmed.service"

@@ -1,0 +1,20 @@
+diff --git a/examples/gadget-acm-ecm.c b/examples/gadget-acm-ecm.c
+index 4e8010f..cd7b02d 100644
+--- a/examples/gadget-acm-ecm.c
++++ b/examples/gadget-acm-ecm.c
+@@ -49,12 +49,12 @@ int main(void)
+ 
+ 	usbg_gadget_strs g_strs = {
+ 			"0123456789", /* Serial number */
+-			"Foo Inc.", /* Manufacturer */
+-			"Bar Gadget" /* Product string */
++			"BayLibre, SAS", /* Manufacturer */
++			"Acme" /* Product string */
+ 	};
+ 
+ 	usbg_config_strs c_strs = {
+-			"CDC 2xACM+ECM"
++			"Acme USB Network+Console"
+ 	};
+ 
+ 	usbg_ret = usbg_init("/sys/kernel/config", &s);

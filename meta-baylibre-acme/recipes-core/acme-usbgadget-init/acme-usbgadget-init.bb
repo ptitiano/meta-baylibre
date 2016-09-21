@@ -9,10 +9,12 @@ FILESEXTRAPATHS_prepend := "${THISDIR}:"
 inherit systemd
 
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "acme-usbgadget-init.service"
+SYSTEMD_SERVICE_${PN} = "acme-usbgadget-init.service acme-usbgadget-udhcpd.service"
 
 SRC_URI = "file://acme-usbgadget-init \
+           file://acme-usbgadget-udhcpd \
            file://acme-usbgadget-init.service \
+           file://acme-usbgadget-udhcpd.service \
 	   file://udhcpd.conf \
 	   file://acme-usbgadget-modules.conf"
 
@@ -23,9 +25,13 @@ do_install_append() {
     install -d ${D}${sysconfdir}/modules-load.d/
     install -d ${D}${bindir}
     install -m 0755 ${WORKDIR}/acme-usbgadget-init ${D}${bindir}
+    install -m 0755 ${WORKDIR}/acme-usbgadget-udhcpd ${D}${bindir}
     ln -s ${bindir}/acme-usbgadget-init ${D}${sysconfdir}/init.d/acme-usbgadget-init
+    ln -s ${bindir}/acme-usbgadget-init ${D}${sysconfdir}/init.d/acme-usbgadget-udhcpd
     install -m 0644 ${WORKDIR}/acme-usbgadget-init.service ${D}${systemd_unitdir}/system
+    install -m 0644 ${WORKDIR}/acme-usbgadget-udhcpd.service ${D}${systemd_unitdir}/system
     sed -i -e 's,@BINDIR@,${bindir},g' ${D}${systemd_unitdir}/system/acme-usbgadget-init.service
+    sed -i -e 's,@BINDIR@,${bindir},g' ${D}${systemd_unitdir}/system/acme-usbgadget-udhcpd.service
     install -m 0644 ${WORKDIR}/acme-usbgadget-modules.conf ${D}${sysconfdir}/modules-load.d/
     install -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}/
 }
