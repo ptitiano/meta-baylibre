@@ -11,3 +11,6 @@ S = "${WORKDIR}/${BPN}-${PV}-iio1"
 DEPENDS = "libiio libusb1 libcheck glib-2.0 libzip"
 
 inherit pkgconfig autotools
+
+# Disable demo to only have iio active
+EXTRA_OECONF = "--enable-demo=no"
