@@ -1,7 +1,7 @@
-From 330597604a622da097ea653ba996612874ecbbb8 Mon Sep 17 00:00:00 2001
+From 9f8245766c2cf82155b9a690aa574a1397f7db18 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:50 +0200
-Subject: [PATCH 08/16] eeprom: at24: platform_data: use BIT() macro
+Subject: [PATCH 08/18] eeprom: at24: platform_data: use BIT() macro
 
 Use BIT() macro to replace the 0xXX constants in platform_data flags
 definitions.
@@ -40,5 +40,5 @@ index be830b1..fcfdfe3 100644
  	void		(*setup)(struct nvmem_device *nvmem, void *context);
  	void		*context;
 -- 
-2.7.4
+2.7.0
 

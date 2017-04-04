@@ -1,7 +1,7 @@
-From 2a7ed5bad1d1cc2cb6e8e786701bd9e94596220b Mon Sep 17 00:00:00 2001
+From a6c8a3936724a19a9637f46b462d9c3f44912059 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 12 Sep 2016 14:50:02 +0200
-Subject: [PATCH 13/16] gpio: pca953x: fix a lockdep warning
+Subject: [PATCH 13/18] gpio: pca953x: fix a lockdep warning
 
 This is a workaround for an issue currently discussed on LKML. We need
 something that lives in .data and can be used by lockdep to
@@ -34,5 +34,5 @@ index 5e3be32..40b96bf 100644
  	/* initialize cached registers from their original values.
  	 * we can't share this chip with another i2c master.
 -- 
-2.7.4
+2.7.0
 

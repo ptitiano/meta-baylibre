@@ -1,7 +1,7 @@
-From 9cb69e4103ffd65e24826564a57408686015cccd Mon Sep 17 00:00:00 2001
+From 7a3511d73f951a2bde0bed3645d443ed94d68fc2 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:45 +0200
-Subject: [PATCH 03/16] eeprom: at24: coding style fixes
+Subject: [PATCH 03/18] eeprom: at24: coding style fixes
 
 Align the arguments in broken lines with the arguments list's opening
 brackets and make checkpatch.pl happy by converting 'unsigned' into
@@ -63,5 +63,5 @@ index e12d76f..564a201 100644
  #endif /* CONFIG_OF */
  
 -- 
-2.7.4
+2.7.0
 

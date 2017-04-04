@@ -1,7 +1,7 @@
-From bd6232db6f1f1c3866544079a499e8f1005e0c9f Mon Sep 17 00:00:00 2001
+From 72f7dbeba588b575cb4700c773458e8ac762f627 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:46 +0200
-Subject: [PATCH 04/16] eeprom: at24: call read/write functions via function
+Subject: [PATCH 04/18] eeprom: at24: call read/write functions via function
  pointers
 
 The first step in simplifying the read and write functions is to call
@@ -60,5 +60,5 @@ index 564a201..0621937 100644
  	if (writable) {
  		if (!use_smbus || use_smbus_write) {
 -- 
-2.7.4
+2.7.0
 

@@ -1,7 +1,7 @@
-From 899b891446a5a09b917b9410e6b7e64bbd4d4631 Mon Sep 17 00:00:00 2001
+From 2a15b3296b497881e82d34acce10da5fdc1b655c Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:54 +0200
-Subject: [PATCH 10/16] eeprom: at24: add support for at24mac series
+Subject: [PATCH 10/18] eeprom: at24: add support for at24mac series
 
 Add a new read function to the at24 driver allowing to retrieve the
 factory-programmed mac address embedded in chips from the at24mac
@@ -102,5 +102,5 @@ index d595874..271a4e2 100644
  	void		(*setup)(struct nvmem_device *nvmem, void *context);
  	void		*context;
 -- 
-2.7.4
+2.7.0
 

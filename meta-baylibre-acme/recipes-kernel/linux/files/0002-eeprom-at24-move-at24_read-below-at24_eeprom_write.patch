@@ -1,7 +1,7 @@
-From 086e5eb815ea48269774b3aad25dcb995d03ff4e Mon Sep 17 00:00:00 2001
+From 95ead8189d6ed694e16ffc36f899f8e617260787 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:44 +0200
-Subject: [PATCH 02/16] eeprom: at24: move at24_read() below
+Subject: [PATCH 02/18] eeprom: at24: move at24_read() below
  at24_eeprom_write()
 
 In preparation for splitting at24_eeprom_write() & at24_eeprom_read()
@@ -97,5 +97,5 @@ index 411600d..e12d76f 100644
  {
  	struct at24_data *at24 = priv;
 -- 
-2.7.4
+2.7.0
 

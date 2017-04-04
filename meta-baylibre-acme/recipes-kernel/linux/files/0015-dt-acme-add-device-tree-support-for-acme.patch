@@ -1,7 +1,7 @@
-From b1682941ab980031d4d9e7a276cce16f88605c67 Mon Sep 17 00:00:00 2001
+From b5d1cc35fe29c47e5666935e2ab4396999288e36 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 1 Aug 2016 18:04:25 +0200
-Subject: [PATCH 15/16] dt: acme: add device tree support for acme
+Subject: [PATCH 15/18] dt: acme: add device tree support for acme
 
 Add the I2C multiplexer, GPIO expanders, all ina226 devices
 and EEPROMs.
@@ -284,5 +284,5 @@ index 55c0e95..52eae9c 100644
  	system-power-controller;
  };
 -- 
-2.7.4
+2.7.0
 

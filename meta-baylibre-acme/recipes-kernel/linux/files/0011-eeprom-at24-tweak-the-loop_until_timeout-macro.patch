@@ -1,7 +1,7 @@
-From 3d7d22021515c67126f1d33cd0d104c50d082fb5 Mon Sep 17 00:00:00 2001
+From 5b008478912e818ae5869e7861373fa34dc4e8db Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Sun, 17 Jul 2016 20:40:06 +0200
-Subject: [PATCH 11/16] eeprom: at24: tweak the loop_until_timeout() macro
+Subject: [PATCH 11/18] eeprom: at24: tweak the loop_until_timeout() macro
 
 loop_until_timeout() replaced a do {} while loop in the at24 driver
 with a for loop which, under certain circumstances (such as heavy load
@@ -45,5 +45,5 @@ index 04e91e3..3cdf8e1 100644
  
  static const struct i2c_device_id at24_ids[] = {
 -- 
-2.7.4
+2.7.0
 

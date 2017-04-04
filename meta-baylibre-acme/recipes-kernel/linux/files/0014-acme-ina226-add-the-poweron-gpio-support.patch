@@ -1,7 +1,7 @@
-From d756e511de05601f88c8a51f123cbcdcd8a33757 Mon Sep 17 00:00:00 2001
+From 928052766d388ad5cf7299e0f28bf9e14b156c67 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Thu, 8 Sep 2016 11:31:04 +0200
-Subject: [PATCH 14/16] acme: ina226: add the poweron gpio support
+Subject: [PATCH 14/18] acme: ina226: add the poweron gpio support
 
 This is not an upstreamable solution, but let's use it for now since
 it doesn't require us to modify libiio.
@@ -113,5 +113,5 @@ index 502f2fb..57117b0 100644
  	if (ret)
  		return ret;
 -- 
-2.7.4
+2.7.0
 
