@@ -82,6 +82,9 @@ SRC_URI += "file://defconfig \
 	file://0014-acme-ina226-add-the-poweron-gpio-support.patch \
 	file://0015-dt-acme-add-device-tree-support-for-acme.patch \
 	file://0016-arm-add-acme_defconfig.patch \
+	file://0017-ARM-dts-am335x-boneblack-Simplify-DT-representation-.patch \
+	file://0018-pca953x-defer-probe-on-1st-register-read-failure.patch \
+	file://0019-iio-ina2xx-adc-return-probe-defer-when-gpio-returns-.patch \
 "
 
 # Modify SRCREV to a different commit hash in a copy of this recipe to

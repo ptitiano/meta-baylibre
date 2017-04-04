@@ -1,7 +1,7 @@
-From b5044a076d2d45401df2a4e13760b5660efd4189 Mon Sep 17 00:00:00 2001
+From 7eeee697c45499fb32fdc6ffde9c15d3c2b118cb Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:43 +0200
-Subject: [PATCH 01/16] eeprom: at24: improve the device_id table readability
+Subject: [PATCH 01/18] eeprom: at24: improve the device_id table readability
 
 As part of the preparation for introducing support for more chips,
 improve the readability of the device table by separating columns
@@ -56,5 +56,5 @@ index 9ceb63b..411600d 100644
  	{ /* END OF LIST */ }
  };
 -- 
-2.7.4
+2.7.0
 

@@ -1,7 +1,7 @@
-From f79c3312d53a195e1948e9811a725b4f160b2033 Mon Sep 17 00:00:00 2001
+From ca3a1cab1cacfab052325a403617ceac82837070 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Wed, 10 Aug 2016 15:45:55 +0200
-Subject: [PATCH 16/16] arm: add acme_defconfig
+Subject: [PATCH 16/18] arm: add acme_defconfig
 
 Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 ---
@@ -4372,5 +4372,5 @@ index 0000000..b8d50c0
 +CONFIG_ARCH_HAS_SG_CHAIN=y
 +# CONFIG_VIRTUALIZATION is not set
 -- 
-2.7.4
+2.7.0
 

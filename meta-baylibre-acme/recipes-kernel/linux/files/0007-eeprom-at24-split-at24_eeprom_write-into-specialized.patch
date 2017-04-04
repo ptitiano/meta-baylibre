@@ -1,7 +1,7 @@
-From e2dda9b9bb65d47e535fab1074997b481c380878 Mon Sep 17 00:00:00 2001
+From 87f0b57dba3d8a1e494cada71acd63548b8710cb Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:49 +0200
-Subject: [PATCH 07/16] eeprom: at24: split at24_eeprom_write() into
+Subject: [PATCH 07/18] eeprom: at24: split at24_eeprom_write() into
  specialized functions
 
 Split at24_eeprom_write() into three smaller functions - one for the
@@ -190,5 +190,5 @@ index e7db137..6acf35a 100644
  	writable = !(chip.flags & AT24_FLAG_READONLY);
  	if (writable) {
 -- 
-2.7.4
+2.7.0
 

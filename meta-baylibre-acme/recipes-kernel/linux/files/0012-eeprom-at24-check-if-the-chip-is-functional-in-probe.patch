@@ -1,7 +1,7 @@
-From d5777e5d89718d86b62a4f06ef0413cc37dcd18b Mon Sep 17 00:00:00 2001
+From 2b9d442d198c677868aa4ee964440ce29b7ff04d Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Fri, 12 Aug 2016 13:32:57 +0200
-Subject: [PATCH 12/16] eeprom: at24: check if the chip is functional in
+Subject: [PATCH 12/18] eeprom: at24: check if the chip is functional in
  probe()
 
 The at24 driver doesn't check if the chip is functional in its probe
@@ -64,5 +64,5 @@ index 3cdf8e1..051b147 100644
  		chip.byte_len, client->name,
  		writable ? "writable" : "read-only", at24->write_max);
 -- 
-2.7.4
+2.7.0
 

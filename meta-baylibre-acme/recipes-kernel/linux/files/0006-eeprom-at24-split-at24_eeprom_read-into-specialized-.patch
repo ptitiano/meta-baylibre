@@ -1,7 +1,7 @@
-From 036cb70e757b43e600c16ed591db5385bd3698a0 Mon Sep 17 00:00:00 2001
+From 711280d133fef1e9954d127caf7dd3d017a75e4c Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:48 +0200
-Subject: [PATCH 06/16] eeprom: at24: split at24_eeprom_read() into specialized
+Subject: [PATCH 06/18] eeprom: at24: split at24_eeprom_read() into specialized
  functions
 
 Split at24_eeprom_read() into two smaller functions - one for the
@@ -183,5 +183,5 @@ index 2efb572..e7db137 100644
  
  	writable = !(chip.flags & AT24_FLAG_READONLY);
 -- 
-2.7.4
+2.7.0
 

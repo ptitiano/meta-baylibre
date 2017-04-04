@@ -1,7 +1,7 @@
-From feb94efe6e29e7c7b8f0f86ee9c26b045382d73f Mon Sep 17 00:00:00 2001
+From 57c44ab38a91ca6df3b8f8a49db87381f2750757 Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:47 +0200
-Subject: [PATCH 05/16] eeprom: at24: hide the read/write loop behind a macro
+Subject: [PATCH 05/18] eeprom: at24: hide the read/write loop behind a macro
 
 Before splitting the read/write routines into smaller, more
 specialized functions, unduplicate some code in advance.
@@ -97,5 +97,5 @@ index 0621937..2efb572 100644
  	return -ETIMEDOUT;
  }
 -- 
-2.7.4
+2.7.0
 

@@ -1,7 +1,7 @@
-From 096cd59b8d6bf1aeeabde8bd08a22a531b9b366c Mon Sep 17 00:00:00 2001
+From d487ac4f98b74305e5fdd189924b87a3e9fe6bac Mon Sep 17 00:00:00 2001
 From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Date: Mon, 6 Jun 2016 10:48:51 +0200
-Subject: [PATCH 09/16] eeprom: at24: support reading the serial number for
+Subject: [PATCH 09/18] eeprom: at24: support reading the serial number for
  24csxx
 
 The chips from the at24cs family have two memory areas - a regular
@@ -151,5 +151,5 @@ index fcfdfe3..d595874 100644
  	void		(*setup)(struct nvmem_device *nvmem, void *context);
  	void		*context;
 -- 
-2.7.4
+2.7.0
 
