@@ -6,8 +6,8 @@ DEPENDS = "python3"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=578ecfeb82fabd60bb6310f0bf6af799"
 
-SRC_URI = "git://github.com/bayLibre-acme/acme-utils.git;branch=next"
-SRCREV = "next"
+SRC_URI = "git://github.com/bayLibre-acme/acme-utils.git;branch=krogoth"
+SRCREV = "58443fdc0a4b6c12f02ac29bfd3a6b3d4db4a401"
 
 S = "${WORKDIR}/git"
 
