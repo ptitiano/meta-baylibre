@@ -15,6 +15,7 @@ SHELL := /bin/bash
 MY_BUILDDIR ?= build
 OUTDIR = $(MY_BUILDDIR)
 IMAGENAME ?= baylibre-acme-image
+MACHINENAME ?= beaglebone-acme
 
 # Set number of threads
 NUM_THREADS ?= 16
@@ -31,7 +32,7 @@ COMMON_ARGS := ${BUILD_SCRIPT} \
 
 COMMON_BIN := \
                 ${COMMON_ARGS} \
-                -m beaglebone-acme \
+                -m ${MACHINENAME} \
                 -b $(MY_BUILDDIR) \
 
 all: sdcard
@@ -49,9 +50,11 @@ $(MY_BUILDDIR):
 	$(COMMON_BIN)
 
 sdcard: $(MY_BUILDDIR)
+ifneq ($(MACHINENAME),raspberrypi)
 	mkdir -p $(OUTDIR)
 	source poky/oe-init-build-env && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
 	source poky/oe-init-build-env && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
+endif
 
 sdk: $(MY_BUILDDIR)
 	source poky/oe-init-build-env && bitbake $(IMAGENAME) -c populate_sdk

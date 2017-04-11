@@ -147,6 +147,10 @@ enable_layer()
     fi
 }
 
+if [ "$MACH" = "raspberrypi" ]; then
+	enable_layer "meta-raspberrypi" "$TOPLEVEL/meta-raspberrypi"
+fi
+
 ## SYSTEMD MIGRATION ##
 #
 enable_layer "meta-baylibre" "$TOPLEVEL/meta-baylibre"

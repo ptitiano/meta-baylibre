@@ -1,0 +1,64 @@
+From 72f7dbeba588b575cb4700c773458e8ac762f627 Mon Sep 17 00:00:00 2001
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date: Mon, 6 Jun 2016 10:48:46 +0200
+Subject: [PATCH 04/18] eeprom: at24: call read/write functions via function
+ pointers
+
+The first step in simplifying the read and write functions is to call
+them via function pointers stored in at24_data. When we eventually
+split the routines into smaller ones (depending on whether they use
+smbus or i2c operations) we'll simply assign them to said pointers
+instead of checking the flags at runtime every time we read/write.
+
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Signed-off-by: Wolfram Sang <wsa@the-dreams.de>
+---
+ drivers/misc/eeprom/at24.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+index 564a201..0621937 100644
+--- a/drivers/misc/eeprom/at24.c
++++ b/drivers/misc/eeprom/at24.c
+@@ -58,6 +58,10 @@ struct at24_data {
+ 	int use_smbus;
+ 	int use_smbus_write;
+ 
++	ssize_t (*read_func)(struct at24_data *, char *, unsigned int, size_t);
++	ssize_t (*write_func)(struct at24_data *,
++			      const char *, unsigned int, size_t);
++
+ 	/*
+ 	 * Lock protects against activities from other Linux tasks,
+ 	 * but not from changes by other I2C masters.
+@@ -351,7 +355,7 @@ static int at24_read(void *priv, unsigned int off, void *val, size_t count)
+ 	while (count) {
+ 		int	status;
+ 
+-		status = at24_eeprom_read(at24, buf, off, count);
++		status = at24->read_func(at24, buf, off, count);
+ 		if (status < 0) {
+ 			mutex_unlock(&at24->lock);
+ 			return status;
+@@ -383,7 +387,7 @@ static int at24_write(void *priv, unsigned int off, void *val, size_t count)
+ 	while (count) {
+ 		int status;
+ 
+-		status = at24_eeprom_write(at24, buf, off, count);
++		status = at24->write_func(at24, buf, off, count);
+ 		if (status < 0) {
+ 			mutex_unlock(&at24->lock);
+ 			return status;
+@@ -518,6 +522,9 @@ static int at24_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 	at24->chip = chip;
+ 	at24->num_addresses = num_addresses;
+ 
++	at24->read_func = at24_eeprom_read;
++	at24->write_func = at24_eeprom_write;
++
+ 	writable = !(chip.flags & AT24_FLAG_READONLY);
+ 	if (writable) {
+ 		if (!use_smbus || use_smbus_write) {
+-- 
+2.7.0
+

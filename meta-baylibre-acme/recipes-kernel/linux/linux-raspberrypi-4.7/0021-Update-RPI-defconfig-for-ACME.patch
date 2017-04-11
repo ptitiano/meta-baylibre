@@ -1,0 +1,48 @@
+From 7ec38ce0d77f28ed5aaa79e4cf8a1721393ea4c1 Mon Sep 17 00:00:00 2001
+From: invalid_git config <unknown@unknown>
+Date: Tue, 11 Apr 2017 12:19:57 +0200
+Subject: [PATCH] Update RPI defconfig for ACME
+
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm/configs/bcmrpi_defconfig | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/configs/bcmrpi_defconfig b/arch/arm/configs/bcmrpi_defconfig
+index 6750e8914ded..5f0ff3c5fdf8 100644
+--- a/arch/arm/configs/bcmrpi_defconfig
++++ b/arch/arm/configs/bcmrpi_defconfig
+@@ -600,10 +600,10 @@ CONFIG_TTY_PRINTK=y
+ CONFIG_HW_RANDOM=y
+ CONFIG_RAW_DRIVER=y
+ CONFIG_I2C=y
+-CONFIG_I2C_CHARDEV=m
++CONFIG_I2C_CHARDEV=y
+ CONFIG_I2C_MUX_PCA954x=m
+-CONFIG_I2C_BCM2708=m
+-CONFIG_I2C_GPIO=m
++CONFIG_I2C_BCM2708=y
++CONFIG_I2C_GPIO=y
+ CONFIG_SPI=y
+ CONFIG_SPI_BCM2835=m
+ CONFIG_SPI_BCM2835AUX=m
+@@ -640,7 +640,6 @@ CONFIG_HWMON=m
+ CONFIG_SENSORS_LM75=m
+ CONFIG_SENSORS_SHT21=m
+ CONFIG_SENSORS_SHTC1=m
+-CONFIG_SENSORS_INA2XX=m
+ CONFIG_THERMAL=y
+ CONFIG_THERMAL_BCM2835=y
+ CONFIG_WATCHDOG=y
+@@ -1306,3 +1305,8 @@ CONFIG_CRYPTO_SHA1_ARM=m
+ CONFIG_CRYPTO_AES_ARM=m
+ CONFIG_CRC_ITU_T=y
+ CONFIG_LIBCRC32C=y
++CONFIG_GPIO_PCA953X=m
++CONFIG_IIO=m
++CONFIG_INA2XX_ADC=m
++CONFIG_REGULATOR=y
++CONFIG_REGULATOR_FIXED_VOLTAGE=y
+-- 
+2.11.0
+
