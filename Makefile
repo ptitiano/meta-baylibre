@@ -50,7 +50,7 @@ $(MY_BUILDDIR):
 	$(COMMON_BIN)
 
 sdcard: $(MY_BUILDDIR)
-ifneq ($(MACHINENAME),raspberrypi)
+ifeq ($(MACHINENAME),beaglebone-acme)
 	mkdir -p $(OUTDIR)
 	source poky/oe-init-build-env && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
 	source poky/oe-init-build-env && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)

@@ -147,7 +147,7 @@ enable_layer()
     fi
 }
 
-if [ "$MACH" = "raspberrypi" ]; then
+if [ "$MACH" = "raspberrypi" -o "$MACH" = "raspberrypi0" -o  "$MACH" = "raspberrypi2" -o "$MACH" = "raspberrypi3" ]; then
 	enable_layer "meta-raspberrypi" "$TOPLEVEL/meta-raspberrypi"
 fi
 
