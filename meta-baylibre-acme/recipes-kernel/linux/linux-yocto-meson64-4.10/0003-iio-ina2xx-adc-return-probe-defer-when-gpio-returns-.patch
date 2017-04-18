@@ -1,0 +1,46 @@
+From 11de8b7cd3f118e8d224652729ee6b7ed115c6ac Mon Sep 17 00:00:00 2001
+From: Neil Armstrong <narmstrong@baylibre.com>
+Date: Tue, 4 Apr 2017 11:54:16 +0200
+Subject: [PATCH 3/4] iio: ina2xx-adc: return probe defer when gpio returns
+ probe defer
+
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/iio/adc/ina2xx-adc.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/iio/adc/ina2xx-adc.c b/drivers/iio/adc/ina2xx-adc.c
+index a5d9fc3..f00eed5 100644
+--- a/drivers/iio/adc/ina2xx-adc.c
++++ b/drivers/iio/adc/ina2xx-adc.c
+@@ -692,9 +692,15 @@ static int ina2xx_probe(struct i2c_client *client,
+ 	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
+ 	if (!indio_dev)
+ 		return -ENOMEM;
+-
+ 	chip = iio_priv(indio_dev);
+ 
++	chip->poweron_gpio = of_get_named_gpio(client->dev.of_node, "gpio", 0);
++	if (chip->poweron_gpio < 0) {
++		if (chip->poweron_gpio == -EPROBE_DEFER)
++			return -EPROBE_DEFER;
++		dev_warn(&client->dev, "poweron gpio not specified");
++	}
++
+ 	/* This is only used for device removal purposes. */
+ 	i2c_set_clientdata(client, indio_dev);
+ 
+@@ -719,10 +725,6 @@ static int ina2xx_probe(struct i2c_client *client,
+ 			val = INA2XX_RSHUNT_DEFAULT;
+ 	}
+ 
+-	chip->poweron_gpio = of_get_named_gpio(client->dev.of_node, "gpio", 0);
+-	if (chip->poweron_gpio < 0)
+-		dev_warn(&client->dev, "poweron gpio not specified");
+-
+ 	ret = set_shunt_resistor(chip, val);
+ 	if (ret)
+ 		return ret;
+-- 
+2.7.4
+

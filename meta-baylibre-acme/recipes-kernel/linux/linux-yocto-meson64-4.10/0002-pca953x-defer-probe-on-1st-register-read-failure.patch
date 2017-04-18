@@ -1,0 +1,35 @@
+From 90e7ee89f9f2cdc53a5887dd0f0fe1d0e21304dc Mon Sep 17 00:00:00 2001
+From: Sebastien Jan <sjan@baylibre.com>
+Date: Thu, 22 Dec 2016 17:41:21 +0100
+Subject: [PATCH 2/4] pca953x: defer probe on 1st register read failure
+
+This allows the I2C mux to be changed and use the deferred probe
+mechanism to have the device loaded later.
+Also double the 1st read as it seems that after an access error, a
+dummy read is necessary (maybe to confirm).
+
+Signed-off-by: Sebastien Jan <sjan@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpio/gpio-pca953x.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpio/gpio-pca953x.c b/drivers/gpio/gpio-pca953x.c
+index d5d72d8..6d372c6 100644
+--- a/drivers/gpio/gpio-pca953x.c
++++ b/drivers/gpio/gpio-pca953x.c
+@@ -837,8 +837,10 @@ static int pca953x_probe(struct i2c_client *client,
+ 		ret = device_pca953x_init(chip, invert);
+ 	else
+ 		ret = device_pca957x_init(chip, invert);
+-	if (ret)
++	if (ret) {
++		ret = -EPROBE_DEFER;
+ 		goto err_exit;
++	}
+ 
+ 	ret = devm_gpiochip_add_data(&client->dev, &chip->gpio_chip, chip);
+ 	if (ret)
+-- 
+2.7.4
+

@@ -1,0 +1,118 @@
+From 08c5bcd3e84aac6887c31dd3206bf1001b4cebe7 Mon Sep 17 00:00:00 2001
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date: Thu, 8 Sep 2016 11:31:04 +0200
+Subject: [PATCH 1/4] acme: ina226: add the poweron gpio support
+
+This is not an upstreamable solution, but let's use it for now since
+it doesn't require us to modify libiio.
+
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/iio/adc/ina2xx-adc.c | 58 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+
+diff --git a/drivers/iio/adc/ina2xx-adc.c b/drivers/iio/adc/ina2xx-adc.c
+index 59b7d76..a5d9fc3 100644
+--- a/drivers/iio/adc/ina2xx-adc.c
++++ b/drivers/iio/adc/ina2xx-adc.c
+@@ -28,6 +28,8 @@
+ #include <linux/module.h>
+ #include <linux/regmap.h>
+ #include <linux/util_macros.h>
++#include <linux/gpio.h>
++#include <linux/of_gpio.h>
+ 
+ #include <linux/platform_data/ina2xx.h>
+ 
+@@ -117,6 +119,8 @@ struct ina2xx_chip_info {
+ 	int int_time_vbus; /* Bus voltage integration time uS */
+ 	int int_time_vshunt; /* Shunt voltage integration time uS */
+ 	bool allow_async_readout;
++	int poweron_gpio;
++	int active;
+ };
+ 
+ static const struct ina2xx_config ina2xx_config[] = {
+@@ -409,6 +413,52 @@ static ssize_t ina2xx_shunt_resistor_store(struct device *dev,
+ 	return len;
+ }
+ 
++static ssize_t ina2xx_active_show(struct device *dev,
++				  struct device_attribute *attr, char *buf)
++{
++	struct ina2xx_chip_info *chip = iio_priv(dev_to_iio_dev(dev));
++	int ret;
++
++	mutex_lock(&chip->state_lock);
++	ret = sprintf(buf, "%d\n", chip->active);
++	mutex_unlock(&chip->state_lock);
++
++	return ret;
++}
++
++static ssize_t ina2xx_active_store(struct device *dev,
++				   struct device_attribute *attr,
++				   const char *buf, size_t len)
++{
++	struct ina2xx_chip_info *chip = iio_priv(dev_to_iio_dev(dev));
++	unsigned long val;
++	int ret;
++
++	if (chip->poweron_gpio < 0)
++		return -EPERM;
++
++	ret = kstrtoul(buf, 10, &val);
++	if (ret)
++		return ret;
++
++	ret = gpio_request(chip->poweron_gpio, NULL);
++	if (ret < 0)
++		return ret;
++
++	mutex_lock(&chip->state_lock);
++	ret = gpio_direction_output(chip->poweron_gpio, val ? 1 : 0);
++	gpio_free(chip->poweron_gpio);
++	if (ret < 0) {
++		mutex_unlock(&chip->state_lock);
++		return ret;
++	}
++
++	chip->active = val ? 1 : 0;
++	mutex_unlock(&chip->state_lock);
++
++	return len;
++}
++
+ #define INA2XX_CHAN(_type, _index, _address) { \
+ 	.type = (_type), \
+ 	.address = (_address), \
+@@ -597,10 +647,14 @@ static IIO_DEVICE_ATTR(in_shunt_resistor, S_IRUGO | S_IWUSR,
+ 		       ina2xx_shunt_resistor_show,
+ 		       ina2xx_shunt_resistor_store, 0);
+ 
++static IIO_DEVICE_ATTR(in_active, S_IRUGO | S_IWUSR,
++		       ina2xx_active_show, ina2xx_active_store, 0);
++
+ static struct attribute *ina2xx_attributes[] = {
+ 	&iio_dev_attr_in_allow_async_readout.dev_attr.attr,
+ 	&iio_const_attr_integration_time_available.dev_attr.attr,
+ 	&iio_dev_attr_in_shunt_resistor.dev_attr.attr,
++	&iio_dev_attr_in_active.dev_attr.attr,
+ 	NULL,
+ };
+ 
+@@ -665,6 +719,10 @@ static int ina2xx_probe(struct i2c_client *client,
+ 			val = INA2XX_RSHUNT_DEFAULT;
+ 	}
+ 
++	chip->poweron_gpio = of_get_named_gpio(client->dev.of_node, "gpio", 0);
++	if (chip->poweron_gpio < 0)
++		dev_warn(&client->dev, "poweron gpio not specified");
++
+ 	ret = set_shunt_resistor(chip, val);
+ 	if (ret)
+ 		return ret;
+-- 
+2.7.4
+

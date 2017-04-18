@@ -151,6 +151,10 @@ if [ "$MACH" = "raspberrypi" -o "$MACH" = "raspberrypi0" -o  "$MACH" = "raspberr
 	enable_layer "meta-raspberrypi" "$TOPLEVEL/meta-raspberrypi"
 fi
 
+if [ "$MACH" = "hardkernel-odroidc2" ]; then
+	enable_layer "meta-meson" "$TOPLEVEL/meta-meson"
+fi
+
 ## SYSTEMD MIGRATION ##
 #
 enable_layer "meta-baylibre" "$TOPLEVEL/meta-baylibre"

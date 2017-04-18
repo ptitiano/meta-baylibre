@@ -55,6 +55,11 @@ ifeq ($(MACHINENAME),beaglebone-acme)
 	source poky/oe-init-build-env && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
 	source poky/oe-init-build-env && ../poky/scripts/wic create ../meta-baylibre/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
 endif
+ifeq ($(MACHINENAME),hardkernel-odroidc2)
+	mkdir -p $(OUTDIR)
+	source poky/oe-init-build-env && bitbake -e > ../$(OUTDIR)/$(IMAGENAME).env
+	source poky/oe-init-build-env && ../poky/scripts/wic create ../poky/scripts/lib/wic/canned-wks/sdimage-bootpart.wks -e $(IMAGENAME) -o $(CURDIR)/$(OUTDIR)
+endif
 
 sdk: $(MY_BUILDDIR)
 	source poky/oe-init-build-env && bitbake $(IMAGENAME) -c populate_sdk
